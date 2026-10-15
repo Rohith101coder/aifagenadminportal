@@ -1,0 +1,116 @@
+export const initialSettingsData = {
+  general: {
+    orgName: "AIFAGen Labs",
+    legalName: "AIFAGEN INTELLIGENCE PRIVATE LIMITED",
+    cin: "U62099TS2025PTC207849",
+    registeredAddress: "12-4-89/3, Saraswathi Nagar, Siddipet, Telangana 502103, India",
+    industry: "IT Staffing, Recruitment Consulting, and Career Acceleration",
+    targetMarket: "US-based tech aspirants (OPT, STEM OPT, H-1B) & Corporate Recruiters",
+    supportEmail: "support@aifagenlabs.com",
+    marketingWebsite: "https://www.aifagenlabs.com",
+    platformUrl: "https://admin.aifagenlabs.com",
+    contactPhone: "+91 98480 12345",
+    rawPhone: "+91 98480 12345",
+    isPhoneRevealed: false,
+    primaryColor: "#2563EB",
+    secondaryColor: "#7C3AED",
+    marketingDomain: "aifagenlabs.com",
+    appDomain: "admin.aifagenlabs.com",
+    domainStatus: "Connected",
+    dnsVerified: true,
+    sslValid: true,
+    lastChecked: "Oct 14, 2026, 07:15 PM IST",
+    pan: "AAHCA9921D",
+    gstin: "36AAHCA9921D1Z4",
+    gstinStatus: "Verified Active",
+    stateCode: "TS",
+    billingContact: "finance@aifagenlabs.com",
+    timezone: "(GMT+05:30) Asia/Kolkata (IST) · Operations / US Eastern Placements",
+    currency: "USD ($) / INR (₹)",
+    numberFormat: "US (en-US)",
+    dateFormat: "DD MMM, YYYY",
+  },
+};
+
+export const settingsNavSections = [
+  {
+    id: "general",
+    name: "General",
+    desc: "Organization profile, Siddipet HQ, corporate identity",
+    iconType: "building",
+  },
+  {
+    id: "admins",
+    name: "Admin Accounts",
+    desc: "Manage authorized team admins, invitations, access",
+    iconType: "user",
+  },
+  {
+    id: "services",
+    name: "Connected Services",
+    desc: "External service health (AI APIs, Stripe, AWS S3, Crawlers)",
+    iconType: "link",
+  },
+  {
+    id: "security",
+    name: "Security & Sessions",
+    desc: "Session timeout, authentication rules, IP allowlists",
+    iconType: "lock",
+  },
+  {
+    id: "jobs-apps",
+    name: "Jobs & Applications",
+    desc: "Review policies, resume limits, daily batch sizes",
+    iconType: "briefcase",
+  },
+  {
+    id: "email-notifs",
+    name: "Email & Notifications",
+    desc: "Recipients, alert digests, payment failure triggers",
+    iconType: "mail",
+  },
+  {
+    id: "payments-tax",
+    name: "Payments & Invoicing",
+    desc: "USD candidate retainers, bill-rate margins, refunds",
+    iconType: "card",
+  },
+  {
+    id: "data-privacy",
+    name: "Data & Compliance",
+    desc: "Resume retention, audit log settings, GDPR/US privacy",
+    iconType: "shield",
+  },
+];
+
+export const sectionAuditHistory = {
+  lastChangedBy: {
+    name: "Rohith P",
+    role: "Super Admin",
+    initials: "RP",
+    timestamp: "Oct 14, 2026, 06:12 PM IST",
+  },
+  recentChanges: [
+    {
+      id: "ch-1",
+      action: "Updated registered address to Siddipet, Telangana HQ",
+      author: "Rohith P",
+      time: "Oct 14, 2026, 06:12 PM",
+      iconType: "edit",
+    },
+    {
+      id: "ch-2",
+      action: "Verified OpenAI GPT-4o & Claude 3.5 API connections",
+      author: "Rohith P",
+      time: "Oct 14, 2026, 02:40 PM",
+      iconType: "gear",
+    },
+    {
+      id: "ch-3",
+      action: "Configured US Dollar ($) candidate retainers",
+      author: "Rohith P",
+      time: "Oct 13, 2026, 11:15 AM",
+      iconType: "edit",
+    },
+  ],
+};

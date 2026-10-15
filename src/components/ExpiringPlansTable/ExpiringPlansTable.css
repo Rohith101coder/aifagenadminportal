@@ -1,0 +1,188 @@
+.expiring-table-card {
+  flex: 1.1;
+  overflow: hidden;
+}
+
+.table-header-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8.75px;
+}
+
+.table-header-block h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.sub-caption {
+  font-size: 12.5px;
+  color: #64748b;
+  margin-top: 2.5px;
+  display: block;
+}
+
+.view-all-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.custom-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #64748b;
+  border-bottom: 1.25px solid #f1f5f9;
+}
+
+.custom-table td {
+  padding: 11px 12px;
+  border-bottom: 1.25px solid #f8fafc;
+  vertical-align: middle;
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 6.25px;
+}
+
+.user-cell-avatar {
+  width: 22.5px;
+  height: 22.5px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  color: #334155;
+  font-size: 11.5px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-cell-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name-cell {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.user-email-cell {
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+.pill-badge {
+  display: inline-block;
+  padding: 2.5px 6.25px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pill-badge.premium {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+.pill-badge.basic {
+  background-color: #ecfdf5;
+  color: #059669;
+}
+
+.expiry-cell {
+  color: #334155;
+  font-weight: 500;
+}
+
+.days-tag {
+  display: inline-block;
+  padding: 2.5px 6.25px;
+  border-radius: 5px;
+  font-size: 8.75px;
+  font-weight: 600;
+}
+
+.days-tag.urgent {
+  background-color: #fee2e2;
+  color: #ef4444;
+}
+
+.days-tag.warning {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.payment-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-cell .amount {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.payment-cell .date-sub {
+  font-size: 8.75px;
+  color: #94a3b8;
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reminder-btn {
+  background-color: #eff6ff;
+  color: #2563eb;
+  padding: 3.75px 7.5px;
+  border-radius: 6.25px;
+  font-size: 8.75px;
+  font-weight: 600;
+}
+
+.table-sort-button {
+  color: inherit;
+  font: inherit;
+  white-space: nowrap;
+}
+
+.reminder-btn:disabled {
+  color: #64748b;
+  background: #f1f5f9;
+  cursor: default;
+}
+
+.table-empty {
+  padding: 15px !important;
+  color: #64748b;
+  text-align: center;
+  font-size: 11.25px;
+}
+
+.reminder-btn:hover {
+  background-color: #dbeafe;
+}
+
+.chevron-link {
+  color: #94a3b8;
+}

@@ -1,0 +1,749 @@
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+}
+
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.content-area {
+  padding: 16.25px 25px 30px;
+}
+
+.sidebar-collapsed .sidebar {
+  width: 72.5px;
+  min-width: 72.5px;
+}
+
+.sidebar-collapsed .sidebar-brand {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-collapsed .brand-text,
+.sidebar-collapsed .sidebar-nav .nav-item span,
+.sidebar-collapsed .sidebar-nav .nav-group-label,
+.sidebar-collapsed .sidebar-footer .user-info {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-nav {
+  padding: 15px 10px;
+}
+
+.sidebar-collapsed .nav-item,
+.sidebar-collapsed .nav-item-left {
+  justify-content: center;
+}
+
+.sidebar-collapsed .sidebar-nav .jobs-sidebar-group > .nav-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar-collapsed .sidebar-nav .jobs-sidebar-group .nav-item-left {
+  flex: 0 0 100%;
+  justify-content: center;
+  gap: 0;
+}
+
+.sidebar-collapsed .nav-item {
+  padding: 12.5px 0;
+}
+
+.sidebar-collapsed .nav-chevron {
+  display: none;
+}
+
+.sidebar-collapsed .sidebar-footer {
+  justify-content: space-between;
+  padding: 15px 5px;
+}
+
+.sidebar-collapsed .sidebar-footer {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.sidebar-collapsed .user-profile {
+  justify-content: center;
+}
+
+.sidebar-collapsed .theme-toggle-btn {
+  flex: 0 0 35px;
+  width: 35px;
+  padding: 0;
+}
+
+.sidebar-collapsed .theme-toggle-label {
+  display: none;
+}
+
+.app-layout[data-theme="dark"] {
+  color-scheme: dark;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] .main-wrapper,
+.app-layout[data-theme="dark"] .content-area,
+.app-layout[data-theme="dark"] .payments-page-layout,
+.app-layout[data-theme="dark"] .users-page-layout,
+.app-layout[data-theme="dark"] .dashboard-container {
+  background-color: #0b1220;
+}
+
+.app-layout[data-theme="dark"] .sidebar,
+.app-layout[data-theme="dark"] .top-header,
+.app-layout[data-theme="dark"] .payment-details-drawer,
+.app-layout[data-theme="dark"] .job-details-drawer,
+.app-layout[data-theme="dark"] .user-details-drawer {
+  background-color: #111827;
+  border-color: #263449;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .card-container,
+  .stat-card,
+  .card-box,
+  .kpi-card,
+  .user-metric-card,
+  .table-controls-card,
+  .table-card-container,
+  .users-table-container,
+  .admin-activity-card,
+  .expiring-table-card,
+  .job-source-card,
+  .attention-strip,
+  .alert-card,
+  .drawer-section,
+  .drawer-panel-card,
+  .payment-info-list,
+  .metric-box,
+  .jobs-table-card,
+  .job-header-card,
+  .drawer-content-box,
+  .job-mini-kpis-grid,
+  .drawer-bottom-bar,
+  .jobs-columns-menu,
+  .jobs-row-menu,
+  .job-drawer-more-menu,
+  .jobs-dialog,
+  .jobs-extra-filters,
+  .jobs-saved-views,
+  .dup-item-row,
+  .link-copy-row,
+  .metric-breakdown-sub,
+  .users-action-modal,
+  .payments-dialog,
+  .plan-modal,
+  .plans-summary-card,
+  .subscription-plan-card,
+  .subscriber-inspector,
+  .header-popover,
+  .bulk-more-menu,
+  .users-control-menu,
+  .source-row-menu,
+  .payment-row-menu,
+  .plan-action-menu,
+  .drawer-more-actions,
+  .users-popover-row,
+  .payments-extra-filters,
+  .bulk-action-bar,
+  .floating-selected-bar
+) {
+  background-color: #111c2e;
+  border-color: #2b3a50;
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .plans-page-tabs,
+  .plans-billing-toggle,
+  .plan-form-grid input,
+  .plan-form-grid select,
+  .plan-form-grid textarea,
+  .plan-add-feature input,
+  .subscriber-actions select
+) {
+  color: #e2e8f0;
+  background-color: #0b1220;
+  border-color: #34445c;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .manage-plans-heading-row h2,
+  .plans-summary-card strong,
+  .plan-card-title-row h3,
+  .plan-price-line strong,
+  .plan-subscriber-metrics strong,
+  .subscriber-inspector h2,
+  .subscriber-info strong,
+  .plan-modal-header h2
+) {
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .plan-modal-header p,
+  .manage-plans-heading-row p,
+  .plans-summary-card > span,
+  .plans-summary-card small,
+  .plan-card-title-row p,
+  .plan-price-line span,
+  .plan-annual-price,
+  .plan-gst-toggle,
+  .plan-limits > div,
+  .plan-entitlements li,
+  .subscriber-inspector header p,
+  .subscriber-info span,
+  .subscriber-info small
+) {
+  color: #94a3b8;
+}
+
+.app-layout[data-theme="dark"] .plans-page-tabs button.active,
+.app-layout[data-theme="dark"] .plans-billing-toggle button.selected {
+  background-color: #1e293b;
+}
+
+.app-layout[data-theme="dark"] .subscriber-inspector > header,
+.app-layout[data-theme="dark"] .subscriber-row {
+  border-color: #263449;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .nav-item,
+  .jobs-sidebar-sublink,
+  .profile-button,
+  .header-search,
+  .search-input,
+  .date-picker-button,
+  .export-btn,
+  .filter-dropdown,
+  .save-view-btn,
+  .columns-selector-btn,
+  .view-user-btn,
+  .per-page-selector,
+  .tooltip-indicator,
+  .active-tooltip,
+  .notification-btn,
+  .header-user-avatar,
+  .brand-text,
+  .nav-group-label,
+  .user-name,
+  .user-role,
+  .page-title,
+  .stat-title,
+  .stat-value,
+  .stat-sub,
+  .stat-subtitle,
+  .stat-card-header,
+  .page-subtitle,
+  .dashboard-heading,
+  .users-heading,
+  .users-caption,
+  .payments-heading,
+  .payments-subtitle,
+  .jobs-page-title,
+  .jobs-page-desc,
+  .sub-count-line,
+  .metric-header-title,
+  .metric-big-number,
+  .bd-val,
+  .source-dot-text,
+  .company-title-bold,
+  .job-title-row h3,
+  .company-text,
+  .job-main-name,
+  .loc-main,
+  .exp-cell,
+  .salary-cell,
+  .apps-count-cell,
+  .drawer-heading-title,
+  .section-head h4,
+  .kv-item p,
+  .mini-val,
+  .source-name-bold,
+  .spec-val,
+  .spec-label,
+  .dup-job-title,
+  .job-activity-item,
+  .job-drawer-copy,
+  .jobs-dialog h2,
+  .jobs-dialog label,
+  .jobs-row-menu button,
+  .job-drawer-more-menu button,
+  .btn-saved-views,
+  .btn-export-white,
+  .table-dropdown-select,
+  .table-btn-select,
+  .sort-dropdown-wrap,
+  .per-page-wrap,
+  .showing-entries-text,
+  .index-counter,
+  .source-pill-meta,
+  .kpi-title,
+  .kpi-value,
+  .kpi-baseline,
+  .metric-title,
+  .metric-number,
+  .table-sort-button,
+  .users-table th,
+  .users-table td,
+  .payments-data-table th,
+  .payments-data-table td,
+  .jobs-table th,
+  .jobs-table td,
+  .job-title-row,
+  .drawer-top-bar,
+  .drawer-bottom-bar,
+  .drawer-content-box,
+  .jobs-category-tabs-row,
+  .active-filters-strip,
+  .table-user-name,
+  .user-name-bold,
+  .user-email-muted,
+  .cell-user-info,
+  .invoice-no-cell,
+  .info-label,
+  .info-val,
+  .info-label.bold,
+  .info-val.bold,
+  .users-control-menu button,
+  .users-control-menu label,
+  .payment-row-menu button,
+  .drawer-more-actions button,
+  .page-count-text,
+  .legend-status-name,
+  .legend-tally,
+  .payments-dialog h2,
+  .payments-dialog p,
+  .payments-dialog label,
+  .users-action-modal h2,
+  .users-action-modal label,
+  .user-name-line,
+  .drawer-main-title,
+  .pay-id-text,
+  .amount-big,
+  .panel-card-header h4,
+  .panel-title-plain,
+  .node-title,
+  .node-time,
+  .activity-title-row h3,
+  .action-main-line,
+  .alert-card-title,
+  .attention-heading-row h4,
+  .attention-desc,
+  .sub-caption,
+  .metric-period,
+  .table-date,
+  .table-time,
+  .total-users-indicator,
+  .filter-dropdown,
+  .saved-payment-views span
+) {
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .payments-subtitle,
+  .users-caption,
+  .page-subtitle,
+  .user-email-muted,
+  .user-role,
+  .nav-group-label,
+  .kpi-period,
+  .kpi-baseline,
+  .metric-period,
+  .info-label,
+  .legend-tally,
+  .sub-caption,
+  .time-sub,
+  .node-time,
+  .user-email-muted,
+  .users-control-menu label,
+  .attention-desc,
+  .alert-card-time,
+  .payment-datetime-sub,
+  .user-role,
+  .info-icon,
+  .time-rel
+) {
+  color: #94a3b8;
+}
+
+.app-layout[data-theme="dark"] :is(
+  input,
+  select,
+  textarea,
+  .search-input,
+  .search-input-box input,
+  .search-bar-inline input,
+  .filter-dropdown select,
+  .filter-dropdown,
+  .custom-dropdown-select,
+  .date-filter-btn,
+  .date-picker-button,
+  .more-filters-btn,
+  .save-view-cta,
+  .save-view-btn,
+  .columns-selector-btn,
+  .export-btn,
+  .export-action-btn,
+  .view-user-btn,
+  .per-page-selector,
+  .btn-view-action,
+  .page-nav-arrow,
+  .page-num-btn,
+  .per-page-dropdown,
+  .download-invoice-cta,
+  .receipt-btn,
+  .footer-more-btn,
+  .collapse-btn,
+  .theme-toggle-btn,
+  .users-control-menu button,
+  .payment-row-menu button,
+  .drawer-more-actions button,
+  .btn-outline-action,
+  .btn-icon-more,
+  .btn-edit-badge,
+  .nav-arrow-btn,
+  .bar-action-btn,
+  .bar-more-btn,
+  .job-header-card,
+  .job-mini-kpis-grid,
+  .dup-item-row,
+  .link-copy-row,
+  .metric-breakdown-sub,
+  .table-dropdown-select,
+  .table-btn-select,
+  .btn-saved-views,
+  .btn-export-white,
+  .jobs-dialog-actions button,
+  .jobs-extra-filters input,
+  .jobs-extra-filters select,
+  .jobs-saved-views input,
+  .jobs-dialog input,
+  .jobs-dialog select,
+  .jobs-columns-menu,
+  .jobs-row-menu,
+  .job-drawer-more-menu
+) {
+  color: #dbe5f2;
+  background-color: #172338;
+  border-color: #33445c;
+}
+
+.app-layout[data-theme="dark"] :is(.tooltip-indicator, .active-tooltip) {
+  background-color: #172338;
+  border-color: #33445c;
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .nav-item:hover,
+  .collapse-btn:hover,
+  .theme-toggle-btn:hover,
+  .notification-btn:hover,
+  .header-popover > button:hover,
+  .users-control-menu button:hover,
+  .payment-row-menu button:hover,
+  .drawer-more-actions button:hover,
+  .bulk-more-menu button:hover
+) {
+  background-color: #202f45;
+  color: #f8fafc;
+}
+
+.app-layout[data-theme="dark"] :is(
+  .sidebar-footer,
+  .toolbar-active-tags-row,
+  .payments-data-table th,
+  .payments-data-table td,
+  .users-table th,
+  .users-table td,
+  .notifications-menu p,
+  .header-divider,
+  .jobs-table th,
+  .jobs-table td,
+  .jobs-category-tabs-row,
+  .active-filters-strip,
+  .drawer-top-bar,
+  .drawer-bottom-bar,
+  .drawer-top-header,
+  .drawer-sticky-footer,
+  .users-table-container,
+  .table-footer-pagination
+) {
+  border-color: #263449;
+}
+
+.app-layout[data-theme="dark"] :is(.payment-row:hover, .user-table-row:hover) {
+  background-color: #18263a;
+}
+
+.app-layout[data-theme="dark"] :is(.payment-row.row-selected, .user-table-row.highlight-row) {
+  background-color: #172b45;
+}
+
+.app-layout[data-theme="dark"] .nav-item.active {
+  color: #93c5fd;
+  background-color: #172b45;
+}
+
+.app-layout[data-theme="dark"] :is(.job-table-row:hover, .job-table-row.row-active-highlight) {
+  background-color: #182b43;
+}
+
+.app-layout[data-theme="dark"] .job-table-row.row-active-highlight {
+  background-color: #172b45;
+}
+
+.app-layout[data-theme="dark"] :is(.job-nav-tab, .btn-text-link, .raw-link, .view-sources-link) {
+  color: #93c5fd;
+}
+
+.app-layout[data-theme="dark"] .job-nav-tab.active {
+  border-color: #60a5fa;
+  color: #93c5fd;
+}
+
+.app-layout[data-theme="dark"] .status-badge-pill.active {
+  color: #6ee7b7;
+  background-color: #064e3b;
+}
+
+.app-layout[data-theme="dark"] .status-badge-pill.draft {
+  color: #cbd5e1;
+  background-color: #334155;
+}
+
+.app-layout[data-theme="dark"] .status-badge-pill.expired {
+  color: #94a3b8;
+  background-color: #1e293b;
+}
+
+.app-layout[data-theme="dark"] .btn-edit-action {
+  color: #93c5fd;
+  background-color: #172b45;
+}
+
+.app-layout[data-theme="dark"] :is(.tab-counter, .mode-pill, .source-pill-meta) {
+  background-color: #202f45;
+  color: #cbd5e1;
+}
+
+.app-layout[data-theme="dark"] :is(.date-filter-bubble, .dup-counter-pill, .public-job-tag) {
+  background-color: #172b45;
+  border-color: #294363;
+  color: #bfdbfe;
+}
+
+.app-layout[data-theme="dark"] :is(.jobs-row-menu button, .job-drawer-more-menu button):hover {
+  background: #202f45;
+}
+
+.app-layout[data-theme="dark"] :is(.search-input, .search-input-box input, .search-bar-inline input)::placeholder {
+  color: #8493a8;
+}
+
+.app-layout[data-theme="dark"] :is(.plan-pill, .status-pill, .drawer-status-pill, .pill-badge, .sub-status-pill) {
+  filter: brightness(0.78) saturate(1.15);
+}
+
+.app-layout[data-theme="dark"] :is(.active-tag-bubble, .filter-pill, .created-payment-link) {
+  background-color: #172b45;
+  border-color: #294363;
+  color: #bfdbfe;
+}
+
+.app-layout[data-theme="dark"] .status-legend-item.active {
+  background-color: #172b45;
+}
+
+.app-layout[data-theme="dark"] .payments-dialog-backdrop {
+  background-color: #020617b3;
+}
+
+.app-layout[data-theme="dark"] :is(.job-sources-layout, .job-sources-content) {
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] :is(.sources-page-title, .big-digit, .source-bold-name, .jobs-added-cell, .sources-empty-state strong) {
+  color: #e2e8f0;
+}
+
+.app-layout[data-theme="dark"] :is(.source-metric-card, .sources-table-card, .table-filter-inputs-bar, .sources-advanced-filters, .sources-popover, .source-row-menu, .source-dialog) {
+  color: #dbe5f1;
+  background-color: #111c2e;
+  border-color: #26364d;
+}
+
+.app-layout[data-theme="dark"] :is(.status-tabs-toolbar, .sources-pagination-bar, .source-table-row td, .source-table-row) {
+  border-color: #26364d;
+}
+
+.app-layout[data-theme="dark"] :is(.status-dot-tally, .tab-status-btn, .last-success-cell, .time-exact, .rate-pct, .run-rel, .stat-sub-bold, .kv-val) {
+  color: #cbd5e1;
+}
+
+.app-layout[data-theme="dark"] :is(.btn-needs-attention, .btn-toolbar-outline, .view-btn, .custom-filter-select, .search-box-wrap, .btn-edit-outline, .rows-per-page-select-wrap select, .sources-popover input:not([type="checkbox"]), .sources-popover button, .sources-advanced-filters input, .source-dialog input, .source-dialog select, .source-dialog-actions button, .sources-pagination-bar button) {
+  color: #cbd5e1;
+  background-color: #172438;
+  border-color: #33465f;
+}
+
+.app-layout[data-theme="dark"] .search-box-wrap input {
+  color: #e2e8f0;
+  background: transparent;
+}
+
+.app-layout[data-theme="dark"] .search-box-wrap input::placeholder {
+  color: #8493a8;
+}
+
+.app-layout[data-theme="dark"] :is(.inline-selection-banner, .banner-action-btn) {
+  filter: brightness(.82);
+}
+
+.app-layout[data-theme="dark"] :is(.source-table-row:hover, .source-row-menu button:hover, .sources-popover button:hover) {
+  background-color: #202f45;
+}
+
+.app-layout[data-theme="dark"] .sources-table-card.grid-mode .source-table-row {
+  border-color: #33465f;
+}
+
+.app-layout[data-theme="dark"] .source-dialog-actions .primary {
+  color: #fff;
+  background: #2563eb;
+}
+
+.mobile-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  animation: backdropFadeIn 0.2s ease-out;
+}
+
+@keyframes backdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* App Layout Responsiveness */
+@media (max-width: 1024px) {
+  .app-layout {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .main-wrapper {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .content-area {
+    padding: 16px 20px 24px;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Universal drawer overlay behavior on tablet/mobile */
+  :is(
+    .user-details-drawer,
+    .payment-details-drawer,
+    .job-details-drawer,
+    .source-details-drawer,
+    .member-details-drawer,
+    .interview-details-drawer,
+    .ai-drawer-container,
+    .audit-drawer-container
+  ) {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: min(520px, 100vw) !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    z-index: 1050 !important;
+    box-shadow: -8px 0 32px rgba(15, 23, 42, 0.28) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    padding: 12px 14px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  :is(
+    .user-details-drawer,
+    .payment-details-drawer,
+    .job-details-drawer,
+    .source-details-drawer,
+    .member-details-drawer,
+    .interview-details-drawer,
+    .ai-drawer-container,
+    .audit-drawer-container
+  ) {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    left: 0 !important;
+  }
+}
+
+/* Unified Floating AI Assistants Dock (Voice Navigation Agent + Enterprise Chatbot) */
+.floating-ai-assistants-dock {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.floating-ai-assistants-dock > * {
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .floating-ai-assistants-dock {
+    bottom: 20px;
+    right: 20px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-ai-assistants-dock {
+    bottom: 16px;
+    right: 16px;
+    gap: 8px;
+  }
+}
+

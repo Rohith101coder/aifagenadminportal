@@ -1,0 +1,131 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12.5px;
+}
+
+.dashboard-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: 42.5px;
+}
+
+.page-title {
+  font-family: inherit;
+  font-size: 26.25px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  font-size: 13.5px;
+  color: #64748b;
+  margin-top: 5px;
+}
+
+.live-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 7.5px;
+}
+
+.live-dot {
+  width: 8.75px;
+  height: 8.75px;
+  border-radius: 50%;
+  background-color: #10b981;
+}
+
+.live-text {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.stat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12.5px;
+}
+
+.dashboard-grid-row {
+  display: flex;
+  gap: 12.5px;
+  min-width: 0;
+}
+
+.card-container {
+  background-color: #ffffff;
+  border: 1.25px solid #eceef1;
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: 0 1.25px 2.5px rgba(15, 23, 42, 0.025);
+  min-width: 0;
+}
+
+.revenue-card {
+  flex: 1.2;
+}
+
+.users-by-plan-card {
+  flex: 0.9;
+}
+
+.dashboard-toast {
+  position: fixed;
+  right: 27.5px;
+  bottom: 25px;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 22.5px;
+  max-width: min(575px, calc(100vw - 40px));
+  padding: 13.75px 17.5px;
+  border: 1.25px solid #bfdbfe;
+  border-radius: 8.75px;
+  background: #eff6ff;
+  color: #1e3a8a;
+  box-shadow: 0 10px 27.5px rgba(15, 23, 42, 0.12);
+  font-size: 15px;
+}
+
+.dashboard-toast button {
+  font-size: 22.5px;
+  line-height: 1;
+  color: #1e3a8a;
+}
+
+@media (max-width: 1600px) {
+  .dashboard-grid-row {
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 1125px) {
+  .stat-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dashboard-grid-row {
+    flex-direction: column;
+  }
+  .dashboard-grid-row > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 750px) {
+  .content-area {
+    padding: 15px;
+  }
+  .stat-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-page-header {
+    gap: 10px;
+    flex-direction: column;
+  }
+  .live-status-indicator {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,124 @@
+.bulk-action-bar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  right: auto;
+  width: min(920px, calc(100vw - 40px));
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  transform: translateX(-50%);
+  animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.bulk-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bulk-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  cursor: pointer;
+}
+
+.bulk-count-text {
+  font-size: 13px;
+  color: #1e293b;
+}
+
+.bulk-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bulk-more-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  min-width: 190px;
+  padding: 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  background: #ffffff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.13);
+}
+
+.bulk-more-menu button {
+  width: 100%;
+  padding: 8px;
+  color: #334155;
+  text-align: left;
+  font-size: 12px;
+}
+
+.bulk-more-menu button:hover {
+  background: #f1f5f9;
+}
+
+@media (max-width: 760px) {
+  .bulk-action-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bulk-actions {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .bulk-btn {
+    padding: 6px 8px;
+  }
+}
+
+.bulk-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #334155;
+  background-color: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.bulk-btn:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.bulk-close-btn {
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.bulk-close-btn:hover {
+  color: #475569;
+}

@@ -1,0 +1,38 @@
+export const initialAdminsList = [
+  {
+    id: "adm-1",
+    name: "Rohith P",
+    email: "rohith.p@aifagenlabs.com",
+    role: "Super Admin",
+    addedDate: "Oct 1, 2026",
+    initials: "RP",
+    isSelf: true,
+  },
+  {
+    id: "adm-2",
+    name: "AIFAGen Support Lead",
+    email: "support@aifagenlabs.com",
+    role: "Support Admin",
+    addedDate: "Oct 3, 2026",
+    initials: "AS",
+    isSelf: false,
+  },
+  {
+    id: "adm-3",
+    name: "Siddipet Operations Head",
+    email: "operations@aifagenlabs.com",
+    role: "Operations Admin",
+    addedDate: "Oct 5, 2026",
+    initials: "SO",
+    isSelf: false,
+  },
+  {
+    id: "adm-4",
+    name: "US Placement Lead",
+    email: "placements@aifagenlabs.com",
+    role: "Placement Admin",
+    addedDate: "Oct 7, 2026",
+    initials: "UP",
+    isSelf: false,
+  },
+];
