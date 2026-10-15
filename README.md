@@ -41,6 +41,11 @@ The portal unifies **Tech Candidate Reverse Recruiting**, **AI Interview Mentors
 
 ---
 
+login credentails
+email : rohith.p@aifagenlabs.com
+password : admin@2026
+
+
 ## 1. Executive Overview
 
 ### What is AIFaGen Labs Admin Portal?
