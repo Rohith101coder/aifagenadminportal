@@ -61,18 +61,52 @@ export async function sendEmailTool({
     throw new Error(`Invalid recipient email address: "${toEmail}"`);
   }
 
+  const clientApiKey =
+    (typeof import.meta !== "undefined" &&
+      import.meta.env &&
+      (import.meta.env.BREVO_API_KEY || import.meta.env.VITE_BREVO_API_KEY)) ||
+    (typeof process !== "undefined" &&
+      process.env &&
+      (process.env.BREVO_API_KEY || process.env.VITE_BREVO_API_KEY)) ||
+    "";
+  const senderEmail =
+    (typeof import.meta !== "undefined" &&
+      import.meta.env &&
+      (import.meta.env.BREVO_SENDER_EMAIL ||
+        import.meta.env.VITE_BREVO_SENDER_EMAIL ||
+        import.meta.env.MAIL_USERNAME)) ||
+    (typeof process !== "undefined" &&
+      process.env &&
+      (process.env.BREVO_SENDER_EMAIL ||
+        process.env.VITE_BREVO_SENDER_EMAIL ||
+        process.env.MAIL_USERNAME)) ||
+    "support@aifagenlabs.com";
+
+  const cleanAttachments = (attachments || [])
+    .map((att) => ({
+      name: att.name || att.filename || "Report_Attachment",
+      content: att.content || att.base64 || "",
+    }))
+    .filter(
+      (att) =>
+        att.content &&
+        typeof att.content === "string" &&
+        att.content.trim().length > 0
+    );
+
   const payload = {
     toEmail: toEmail.trim(),
     subject: subject || "AIFaGen Portal Report",
     htmlContent: htmlContent || "<p>Attached report from AIFaGen Admin Portal.</p>",
     text: text || "Please view the HTML version or download the attached reports.",
-    attachments: attachments.map((att) => ({
-      name: att.name || att.filename || "Report_Attachment",
-      content: att.content || att.base64 || "",
-    })),
+    attachments: cleanAttachments,
+    brevoApiKey: clientApiKey,
+    senderEmail: senderEmail,
   };
 
-  // Attempt 1: Call Vite server middleware endpoint (/api/send-email)
+  let endpointErrorMsg = "";
+
+  // Attempt 1: Call Vercel/Vite serverless endpoint (/api/send-email)
   try {
     const apiUrl =
       typeof window !== "undefined"
@@ -98,35 +132,18 @@ export async function sendEmailTool({
     }
 
     const errData = await response.json().catch(() => ({}));
-    console.warn("Dev server mail endpoint note:", errData);
+    endpointErrorMsg = errData.error || errData.message || `Server responded with status ${response.status}`;
+    console.warn("Mail endpoint warning:", errData);
   } catch (netErr) {
+    endpointErrorMsg = netErr.message;
     console.warn("Server mail endpoint unreachable, trying direct Brevo REST API...", netErr);
   }
 
   // Attempt 2: Direct Client Fallback using Brevo REST API v3
-  const clientApiKey =
-    (typeof import.meta !== "undefined" &&
-      import.meta.env &&
-      (import.meta.env.BREVO_API_KEY || import.meta.env.VITE_BREVO_API_KEY)) ||
-    (typeof process !== "undefined" &&
-      process.env &&
-      (process.env.BREVO_API_KEY || process.env.VITE_BREVO_API_KEY)) ||
-    "";
-  const senderEmail =
-    (typeof import.meta !== "undefined" &&
-      import.meta.env &&
-      (import.meta.env.BREVO_SENDER_EMAIL ||
-        import.meta.env.VITE_BREVO_SENDER_EMAIL ||
-        import.meta.env.MAIL_USERNAME)) ||
-    (typeof process !== "undefined" &&
-      process.env &&
-      (process.env.BREVO_SENDER_EMAIL ||
-        process.env.VITE_BREVO_SENDER_EMAIL ||
-        process.env.MAIL_USERNAME)) ||
-    "support@aifagenlabs.com";
-
   if (!clientApiKey || clientApiKey.includes("your_")) {
-    throw new Error("No Brevo API key configured in environment.");
+    throw new Error(
+      endpointErrorMsg || "No Brevo API key configured in environment. Please add BREVO_API_KEY to Vercel Environment Variables."
+    );
   }
 
   const brevoDirectResponse = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -145,9 +162,7 @@ export async function sendEmailTool({
       subject: payload.subject,
       htmlContent: payload.htmlContent,
       textContent: payload.text,
-      ...(payload.attachments && payload.attachments.length > 0
-        ? { attachment: payload.attachments }
-        : {}),
+      ...(cleanAttachments.length > 0 ? { attachment: cleanAttachments } : {}),
     }),
   });
 
