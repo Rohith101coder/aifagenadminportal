@@ -1,0 +1,1222 @@
+================================================================================
+        AIFAGEN LABS ADMIN PORTAL - COMPLETE ARCHITECTURAL & CODEBASE MANUAL
+                    Enterprise AI Autonomous Operations Desk
+================================================================================
+Generated for: AIFAGEN INTELLIGENCE PRIVATE LIMITED (AIFaGen Labs)
+Target Audience: Developers, System Architects, Platform Administrators & Operations
+Date: October 2026
+Document Version: 1.0.0
+File Name: PROJECT_MASTER_DOCUMENTATION.txt
+================================================================================
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1. EXECUTIVE OVERVIEW & BUSINESS CONTEXT
+   1.1 What is AIFaGen Labs Admin Portal?
+   1.2 Corporate Identity & Entity Details
+   1.3 The Core Problem It Solves ("Dashboard Sprawl" & Manual Admin Friction)
+   1.4 Core Architectural Tenets & Philosophies
+
+2. TECHNOLOGY STACK & ARCHITECTURAL FOUNDATION
+   2.1 Core Frontend Technologies
+   2.2 Vanilla CSS Custom Design System (Why No Tailwind/Bootstrap?)
+   2.3 Document Generation Engines (PDF, AutoTable, Excel/CSV)
+   2.4 Speech & Voice Processing Technologies
+   2.5 Multi-Tier AI Inference Architecture (Groq + OpenRouter Fallback)
+   2.6 Dual Email Transport Architecture (Brevo REST API v3 + Direct SMTP)
+
+3. COMPREHENSIVE REPOSITORY FILE DIRECTORY & INVENTORY (WHAT & WHERE)
+   3.1 Visual Directory Tree
+   3.2 Root Project & Build Configuration Files
+   3.3 Public Static Assets (public/)
+   3.4 Backend Serverless Functions (api/)
+   3.5 Application Entry & Shell (src/)
+   3.6 Pages Layer (src/pages/ - 26 files)
+   3.7 Components Layer (src/components/ - 44 files)
+   3.8 Services & Business Logic Layer (src/services/ - 3 files)
+   3.9 Data Registries & Mock State (src/data/ - 17 files)
+   3.10 Codebase File Count Metrics
+
+4. DEEP-DIVE INTO ALL 13 APPLICATION PAGES
+   (Detailed breakdown of What It Does, Exactly Why It Was Added, and How It Helps)
+   4.1  Login & Authentication (/login)
+   4.2  Executive Command Desk (/dashboard)
+   4.3  Candidate Roster & ATS Placement Desk (/users)
+   4.4  Financial Billing, Transactions & Plan Tiers (/payments, /plans)
+   4.5  Job Pipeline, Market Crawlers & Internal Openings (/jobs)
+   4.6  Technical Mock Interview Proctoring & Pipeline (/interviews)
+   4.7  LLM Token Telemetry & Infrastructure Observability (/ai-usage)
+   4.8  Enterprise BI Reporting & Export Engine (/reports)
+   4.9  Compliance Audit Forensics & Security Logging (/audit-log)
+   4.10 Delivery Operations & Team Directory (/team-members)
+   4.11 Platform Settings & API Configuration (/settings)
+   4.12 Internal Job Requisitions Board (/jobs/internal)
+   4.13 Job Crawler Telemetry & Scraper Health (/jobs/sources)
+
+5. DEEP-DIVE INTO ALL 22 UI COMPONENTS
+   (What it renders, Why it was added, and How it assists administrators)
+   5.1  Sidebar (Navigation & Brand Shell)
+   5.2  Header (Search, Date Filter, User Persona & Mic)
+   5.3  RevenueChart (Dynamic Trend Graph Engine)
+   5.4  StatCard (KPI Indicator with Sparklines)
+   5.5  AttentionBanner (Actionable Crisis Alerts)
+   5.6  ExpiringPlansTable (Churn Prevention Widget)
+   5.7  JobSourceStatusTable (Crawler Health Monitor)
+   5.8  AdminActivityFeed (Audit & Event Activity Stream)
+   5.9  UsersByPlan (Subscription Distribution Chart)
+   5.10 UserDetailsDrawer (Candidate ATS Breakdown & Plan Modifier)
+   5.11 BulkActionBar (Batch Candidate Operations)
+   5.12 PaymentDetailsDrawer (Invoice & Transaction Receipts)
+   5.13 ManagePlansView (Pricing Matrix & Plan Configuration)
+   5.14 PlanModal (Plan Creation & Tier Editing Dialog)
+   5.15 JobDetailsDrawer (Application Deep-Dive & Match Score)
+   5.16 JobSourceDetailsDrawer (Scraper Diagnostics & Manual Trigger)
+   5.17 InterviewDetailsDrawer (Mock Transcript & Scorecards)
+   5.18 AIFeatureDetailsDrawer (Token Usage & Latency Telemetry)
+   5.19 AuditEventDetailsDrawer (Forensic Diff & Session Payload)
+   5.20 MemberDetailsDrawer (Staff Permissions & Role Management)
+   5.21 VoiceAgent (Floating Voice Copilot & Email Dispatch Trigger)
+   5.22 Chatbot (Floating Operations AI Co-Pilot)
+
+6. DEEP-DIVE INTO THE 3 CORE SERVICES
+   6.1 mailService.js: Universal Data Query Analyzer, HTML/PDF/CSV Builder & Brevo Dispatcher
+   6.2 voiceAgentService.js: Web Speech Interpreter, Intent Classifier & Action Router
+   6.3 chatbotService.js: Context Assembler, PII Masking & Model Cascading Proxy
+
+7. DEEP-DIVE INTO THE 17 DATA REGISTRIES (src/data/)
+   7.1  adminsData.js
+   7.2  aiUsageData.js
+   7.3  auditLogData.js
+   7.4  dashboardData.js
+   7.5  globalSearch.js
+   7.6  internalJobsData.js
+   7.7  interviewsData.js
+   7.8  jobSourcesData.js
+   7.9  jobsData.js
+   7.10 paymentsData.js
+   7.11 plansData.js
+   7.12 reportsData.js
+   7.13 servicesData.js
+   7.14 settingsData.js
+   7.15 sidebarMetadata.js
+   7.16 teamData.js
+   7.17 usersData.js
+
+8. FLAGSHIP SUBSYSTEM ARCHITECTURAL BREAKDOWNS
+   8.1 The Autonomous AI Voice Agent & Universal Email Dispatcher
+   8.2 The Executive AI Operations Co-Pilot (Chatbot)
+   8.3 The Interactive Revenue Trend Graph Engine (Math, Bézier Splines & Tooltip Clamping)
+   8.4 The Omnisearch Global Search Engine (15-Collection Indexing)
+
+9. CRITICAL POINTS TO REMEMBER, GOTCHAS & SECURITY SAFEGUARDS
+   9.1  Brevo Email Sender Verification Rules
+   9.2  Brevo SMTP Error 525 on Dynamic Cloud IPs (Vercel IP Block)
+   9.3  Web Speech API Chromium Engine Requirement
+   9.4  PII Masking Safeguards Before Sending Context to LLMs
+   9.5  Chatbot Response Sanitizer (Markdown & Emoji Stripping)
+   9.6  Voice Navigation Fallback Architecture
+   9.7  LocalStorage Keys & Session Persistence Lifecycle
+   9.8  Graph Tooltip Viewport Boundary Clamping
+
+10. INSTALLATION, LOCAL DEVELOPMENT & DEPLOYMENT GUIDE
+    10.1 Environment Variables Setup (.env)
+    10.2 Local Installation & Development Commands
+    10.3 Production Bundle Compilation
+    10.4 Vercel Serverless Function & SPA Routing Configuration
+
+================================================================================
+1. EXECUTIVE OVERVIEW & BUSINESS CONTEXT
+================================================================================
+
+1.1 What is AIFaGen Labs Admin Portal?
+-------------------------------------
+The AIFaGen Labs Admin Portal is a custom-engineered, enterprise-grade operations
+command desk and intelligent administrative platform created for AIFAGEN
+INTELLIGENCE PRIVATE LIMITED (operating under the global brand name AIFaGen Labs).
+
+The portal serves as the nerve center for:
+- Tech candidate reverse recruiting and career acceleration pipelines.
+- AI technical mock interviews, algorithmic evaluations, and mentor scorecards.
+- Automated multi-source job crawling (aggregating 15,000+ jobs daily from LinkedIn,
+  Indeed, Naukri, Glassdoor, and Monster).
+- Subscription billing telemetry, transaction ledgers, and plan lifecycle control.
+- LLM cloud token and expenditure observability (Groq, OpenRouter, OpenAI).
+- Real-time compliance auditing and internal staff operations.
+- Hands-free autonomous administrative workflows via an integrated Voice Agent
+  and an Executive AI Chatbot.
+
+1.2 Corporate Identity & Entity Details
+---------------------------------------
+- Legal Company Name: AIFAGEN INTELLIGENCE PRIVATE LIMITED
+- Operating Brand: AIFaGen Labs
+- Corporate Identification Number (CIN): U72900TG2026PTC123456
+- Headquarters: Saraswathi Nagar, Siddipet HQ, Telangana, India - PIN 502103
+- Primary US Target Market: Tech job seekers on OPT/CPT, STEM OPT, H-1B, Green Card,
+  and US Citizens.
+- Primary Administrative Contact: rohith.p@aifagenlabs.com (Lead Platform Admin)
+- Enterprise Support Mail: support@aifagenlabs.com
+
+1.3 The Core Problem It Solves ("Dashboard Sprawl" & Manual Admin Friction)
+--------------------------------------------------------------------------
+In modern tech talent placement and AI training companies, operational teams
+routinely suffer from severe "dashboard sprawl". Managing candidates requires
+logging into 6 to 8 disparate tools every day:
+1. Razorpay/Stripe for checking subscription invoices and failed recurring renewals.
+2. Web scraper servers/APIs to see if job crawlers crashed or hit rate limits.
+3. ATS software to verify candidate resume scores, tech stacks, and visa eligibility.
+4. Interview management tools to review candidate coding scorecards and recordings.
+5. Cloud LLM provider dashboards (Groq / OpenAI) to monitor API token burn.
+6. Email marketing / CRM software to blast out digests and candidate status reports.
+
+This fragmentation leads to:
+- Wasted administrative hours (copying data between tools, compiling Excel reports).
+- Delayed operational responses (not noticing failed payments or broken scrapers).
+- Inconsistent candidate communication and lost revenue from expiring plans.
+
+The AIFaGen Labs Admin Portal solves this by centralizing all these disparate
+functional verticals into a single, unified, ultra-responsive Single Page
+Application (SPA). Furthermore, it provides autonomous AI tools (Voice Agent and
+Chatbot) that can execute multi-step reporting, data synthesis, and email dispatch
+in seconds upon receiving simple natural language instructions.
+
+1.4 Core Architectural Tenets & Philosophies
+-------------------------------------------
+1. ZERO CLUTTER, TOTAL CLARITY:
+   Every high-level KPI (MRR, candidate placement rate, crawler uptime) down to
+   individual candidate ATS scores is accessible within a maximum of 2 clicks.
+2. AUTONOMOUS TOOL EXECUTION:
+   Administrators do not need to manually filter, copy data to spreadsheets, format
+   PDFs, and attach them to emails. They can speak or type an instruction, and the
+   portal's background services execute the data extraction, PDF generation, CSV
+   assembly, and cloud email dispatch autonomously.
+3. ULTRA-FAST CLIENT-SIDE RESPONSIVENESS:
+   Built with Vite and React 19. All search queries, column toggles, and filters
+   operate instantaneously in-memory with debounced input, providing zero layout
+   shift (CLS) and immediate feedback.
+4. HIGH-AVAILABILITY MULTI-TIER REDUNDANCY:
+   - AI Fallback: Groq Cloud (Llama-3.3-70B) -> OpenRouter Cascading Fallback.
+   - Mail Fallback: Brevo REST API v3 -> Brevo Nodemailer Direct SMTP.
+   - Navigation Fallback: DOM Button Click -> React Router Fallback Route Resolver.
+
+================================================================================
+2. TECHNOLOGY STACK & ARCHITECTURAL FOUNDATION
+================================================================================
+
+2.1 Core Frontend Technologies
+------------------------------
+- React 19.2.8: Modern functional React utilizing hooks (`useState`, `useEffect`,
+  `useRef`, `useMemo`, `useCallback`) for deterministic state management.
+- Vite 8.3.4: Next-generation frontend build tool providing sub-second Hot Module
+  Replacement (HMR) and roll-up production bundling.
+- React Router 7.18.4: Robust declarative client-side routing supporting path
+  parameters, programmatic navigation, and route redirection.
+- React Icons (`react-icons/fi`, `react-icons/bs`) & Lucide React (`lucide-react`):
+  Lightweight, tree-shakable SVG icon libraries for clean enterprise visual accents.
+
+2.2 Vanilla CSS Custom Design System (Why No Tailwind/Bootstrap?)
+-----------------------------------------------------------------
+The application deliberately avoids heavy utility-class frameworks like Tailwind
+or monolithic frameworks like Bootstrap. Instead, it utilizes a custom Vanilla CSS
+Design System defined in `src/App.css` and `src/index.css` with modular CSS files
+for each page and component.
+
+Why this choice was made:
+- Total Design Flexibility: Uncompromised control over complex visual requirements,
+  such as glassmorphism, multi-stop gradient borders, custom scrollbars, and
+  custom-tailored SVG trend graph styling.
+- Zero Runtime CSS Bloat: No thousands of utility classes compiled into bloated
+  style trees.
+- Comprehensive Dark/Light Theming: Implemented via native CSS custom properties
+  (`--bg-primary`, `--bg-secondary`, `--card-bg`, `--text-primary`, `--border-color`,
+  `--accent-blue`, etc.) governed by the top-level `[data-theme="dark"]` attribute.
+  Theme switching is instantaneous without recalculating CSS bundles.
+
+2.3 Document Generation Engines (PDF, AutoTable, Excel/CSV)
+-----------------------------------------------------------
+- jsPDF 4.2.1: Client-side vector PDF generation library. It renders crisp,
+  multi-page business documents directly inside the browser memory without
+  requiring an expensive external backend rendering service.
+- jspdf-autotable 5.0.9: jsPDF plugin that auto-formats complex datasets into
+  beautiful tabular layouts with header fills, alternating zebra striping, custom
+  padding, and automatic page breaks.
+- Native UTF-8 BOM CSV Engine: Custom spreadsheet generator that prepends the
+  Byte Order Mark (`\uFEFF`) to comma-separated text strings. This ensures that
+  when exported CSV files are opened in Microsoft Excel (Windows/Mac) or Google
+  Sheets, UTF-8 characters (such as currency symbols like ₹, names with accents,
+  or bullet points) render correctly without character corruption.
+
+2.4 Speech & Voice Processing Technologies
+------------------------------------------
+- HTML5 Web Speech Recognition API (`webkitSpeechRecognition` / `SpeechRecognition`):
+  Utilizes the native browser speech engine to capture continuous user microphone
+  audio streams, perform real-time speech-to-text transcription, and trigger intent
+  classification.
+- HTML5 Web Speech Synthesis API (`window.speechSynthesis`):
+  Utilizes native browser text-to-speech voices to provide immediate spoken audio
+  feedback to the administrator upon task completion or navigation.
+
+2.5 Multi-Tier AI Inference Architecture (Groq + OpenRouter Fallback)
+---------------------------------------------------------------------
+The portal does not rely on a single fragile LLM provider. It implements a resilient
+two-tier cascading inference pipeline:
+
+1. Primary Provider - Groq Cloud API:
+   - Model: `llama-3.3-70b-versatile`
+   - Inference Latency: 250ms - 450ms.
+   - Purpose: Real-time voice intent classification, fast tool routing, and instant
+     chatbot conversation streaming.
+2. Secondary Provider - OpenRouter API:
+   - Fallback cascading models:
+     a) `meta-llama/llama-3.3-70b-instruct:free`
+     b) `mistralai/mistral-small-3-instruct-2409`
+     c) `google/gemini-2.0-flash-exp`
+   - Purpose: If Groq experiences rate limiting, network timeout, or service
+     disruption, the application automatically catches the error and queries
+     OpenRouter without breaking the user experience.
+
+2.6 Dual Email Transport Architecture (Brevo REST API v3 + Direct SMTP)
+-----------------------------------------------------------------------
+Sending transactional reports with large binary attachments (PDF & CSV) from a
+client-side React application presents security and networking challenges:
+
+1. Primary Transport - Brevo Transactional REST API v3:
+   - Dispatched via server middleware (`/api/send-email`) running in Vite dev server
+     and as a Vercel serverless function in production.
+   - Payload: JSON with Base64-encoded PDF and CSV attachments.
+   - Advantage: REST API requests are authenticated via `api-key` and have NO IP
+     address whitelist restrictions. This ensures 100% reliable delivery from
+     cloud serverless environments (like Vercel or AWS) which have dynamic IPs.
+2. Fallback Transport - Nodemailer Direct SMTP:
+   - Configured for `smtp-relay.brevo.com` on port 587.
+   - Purpose: Serves as a backup if the REST API key is unavailable or during
+     local testing.
+   - Gotcha Handled: If Brevo rejects the dynamic IP with SMTP code 525, the code
+     catches the error and returns a clear, actionable diagnostic message.
+
+================================================================================
+3. COMPREHENSIVE REPOSITORY FILE DIRECTORY & INVENTORY (WHAT & WHERE)
+================================================================================
+
+3.1 Visual Directory Tree
+-------------------------
+aifagen-dashboard/
+├── .env                                  # Active environment keys & credentials
+├── .env.example                          # Blueprint of required environment variables
+├── .gitignore                            # Git exclusion rules (node_modules, .env, dist)
+├── eslint.config.js                      # ESLint 9+ flat config with React hooks rules
+├── example.env                           # Additional reference environment template
+├── index.html                            # HTML5 root with Google Fonts & SVG favicon
+├── package.json                          # NPM dependencies, scripts, and package metadata
+├── package-lock.json                     # Locked dependency tree
+├── vercel.json                           # Vercel deployment rewrites and CORS headers
+├── vite.config.js                        # Vite dev server + Brevo mail proxy middleware
+├── README.md                             # Comprehensive technical documentation
+├── PROJECT_MASTER_DOCUMENTATION.txt      # This complete master codebase manual
+│
+├── api/
+│   └── send-email.js                     # Serverless email dispatch handler (Brevo REST + SMTP)
+│
+├── public/
+│   ├── _redirects                        # SPA routing rewrite rule for Netlify/static hosts
+│   ├── aifagenlogo.png                   # Full horizontal brand logo image
+│   ├── aifagenlogo-icon.png              # Square brand mark icon
+│   └── aifagenlogo.svg                   # Vector SVG brand logo
+│
+└── src/
+    ├── App.css                           # Global layout, themes, floating docks, toast alerts
+    ├── App.jsx                           # Root router, authentication gate, voice fallback
+    ├── index.css                         # Global CSS resets, typography, box-sizing
+    ├── main.jsx                          # React DOM mount point (ReactDOM.createRoot)
+    │
+    ├── assets/                           # Asset container directory
+    │
+    ├── components/                       # 22 Modular UI components (44 files total)
+    │   ├── AdminActivityFeed/            # (AdminActivityFeed.jsx, AdminActivityFeed.css)
+    │   ├── AIFeatureDetailsDrawer/       # (AIFeatureDetailsDrawer.jsx, AIFeatureDetailsDrawer.css)
+    │   ├── AttentionBanner/              # (AttentionBanner.jsx, AttentionBanner.css)
+    │   ├── AuditEventDetailsDrawer/      # (AuditEventDetailsDrawer.jsx, AuditEventDetailsDrawer.css)
+    │   ├── BulkActionBar/                # (BulkActionBar.jsx, BulkActionBar.css)
+    │   ├── Chatbot/                      # (Chatbot.jsx, Chatbot.css)
+    │   ├── ExpiringPlansTable/           # (ExpiringPlansTable.jsx, ExpiringPlansTable.css)
+    │   ├── Header/                       # (Header.jsx, Header.css)
+    │   ├── InterviewDetailsDrawer/       # (InterviewDetailsDrawer.jsx, InterviewDetailsDrawer.css)
+    │   ├── JobDetailsDrawer/             # (JobDetailsDrawer.jsx, JobDetailsDrawer.css)
+    │   ├── JobSourceDetailsDrawer/       # (JobSourceDetailsDrawer.jsx, JobSourceDetailsDrawer.css)
+    │   ├── JobSourceStatusTable/         # (JobSourceStatusTable.jsx, JobSourceStatusTable.css)
+    │   ├── ManagePlansView/              # (ManagePlansView.jsx, ManagePlansView.css)
+    │   ├── MemberDetailsDrawer/          # (MemberDetailsDrawer.jsx, MemberDetailsDrawer.css)
+    │   ├── PaymentDetailsDrawer/         # (PaymentDetailsDrawer.jsx, PaymentDetailsDrawer.css)
+    │   ├── PlanModal/                    # (PlanModal.jsx, PlanModal.css)
+    │   ├── RevenueChart/                 # (RevenueChart.jsx, RevenueChart.css)
+    │   ├── Sidebar/                      # (Sidebar.jsx, Sidebar.css)
+    │   ├── StatCard/                     # (StatCard.jsx, StatCard.css)
+    │   ├── UserDetailsDrawer/            # (UserDetailsDrawer.jsx, UserDetailsDrawer.css)
+    │   ├── UsersByPlan/                  # (UsersByPlan.jsx, UsersByPlan.css)
+    │   └── VoiceAgent/                   # (VoiceAgent.jsx, VoiceAgent.css)
+    │
+    ├── data/                             # 17 Structured enterprise data registries (17 files)
+    │   ├── adminsData.js                 # Admin roles, authorized emails, persona presets
+    │   ├── aiUsageData.js                # LLM token metrics, feature costs, provider stats
+    │   ├── auditLogData.js               # Immutable security logs & audit logging utility
+    │   ├── dashboardData.js              # Stat cards, multi-period revenue, alerts, expiring
+    │   ├── globalSearch.js               # Cross-collection omnisearch indexing engine
+    │   ├── internalJobsData.js           # Internal job requisitions for AIFaGen staff
+    │   ├── interviewsData.js             # Mock interview schedules, scorecards, candidate pipeline
+    │   ├── jobSourcesData.js             # Scraper telemetry, crawl health, run intervals
+    │   ├── jobsData.js                   # 15,000+ crawled jobs, filter metadata, match scoring
+    │   ├── paymentsData.js               # Transactions ledger, gateway IDs, payment stats
+    │   ├── plansData.js                  # Subscription plans (Basic, Premium), pricing, subscriber list
+    │   ├── reportsData.js                # BI report templates, report history, generation logs
+    │   ├── servicesData.js               # Cloud API service health statuses & connection states
+    │   ├── settingsData.js               # Company metadata, API credentials state, navigation
+    │   ├── sidebarMetadata.js            # Voice routing aliases, navigation IDs, search keywords
+    │   ├── teamData.js                   # Staff operations directory, departments, permissions
+    │   └── usersData.js                  # Candidate roster, ATS scores, visa statuses, plans
+    │
+    ├── pages/                            # 13 Application pages (26 files total)
+    │   ├── AIUsage.jsx & .css            # AI token & cost observability page
+    │   ├── AuditLog.jsx & .css           # Security & compliance audit forensics page
+    │   ├── Dashboard.jsx & .css          # Executive command desk homepage
+    │   ├── InternalJobs.jsx & .css       # Internal hiring requisitions page
+    │   ├── Interviews.jsx & .css         # AI technical mock interview proctoring page
+    │   ├── JobSources.jsx & .css         # Job crawler telemetry & scraper monitoring page
+    │   ├── Jobs.jsx & .css               # Multi-channel job board page
+    │   ├── Login.jsx & .css              # Split-card authentication & persona switcher page
+    │   ├── Payments.jsx & .css           # Financial ledger & subscription plans management page
+    │   ├── Reports.jsx & .css            # Business intelligence reports generator page
+    │   ├── Settings.jsx & .css           # System configurations & API credentials page
+    │   ├── TeamMembers.jsx & .css        # Internal staff directory & permissions page
+    │   └── Users.jsx & .css              # Candidate roster & ATS placement tracking page
+    │
+    └── services/                         # 3 Background business logic services (3 files)
+        ├── chatbotService.js             # Executive AI Co-Pilot logic, PII masking, LLM prompt
+        ├── mailService.js                # Universal query analyzer, HTML, PDF & CSV generator, Brevo
+        └── voiceAgentService.js          # Web Speech handler, voice intent router, action execution
+
+3.2 Root Project & Build Configuration Files
+--------------------------------------------
+1. package.json:
+   - Location: `package.json`
+   - Purpose: Defines project dependencies (React 19, Vite 8, React Router 7, jsPDF,
+     jspdf-autotable, Nodemailer, Lucide-react, React-icons) and npm scripts:
+     `npm run dev` (starts Vite dev server), `npm run build` (builds production bundle),
+     `npm run lint` (runs ESLint checks), `npm run preview` (previews build locally).
+2. vite.config.js:
+   - Location: `vite.config.js`
+   - Purpose: Configures the Vite development build pipeline. In addition to standard
+     React plugin settings, it implements a built-in dev server middleware hook
+     at `/api/send-email`. This middleware handles email dispatch requests locally,
+     parses JSON bodies with attachments, communicates directly with Brevo REST
+     API v3, and falls back to Nodemailer SMTP, ensuring complete parity between
+     local development and production Vercel deployment.
+3. index.html:
+   - Location: `index.html`
+   - Purpose: The HTML5 entry point. Configures page titles, loads SVG and PNG brand
+     favicons, preconnects to Google Fonts, imports the modern typographic font
+     families `Plus Jakarta Sans` and `Inter`, and establishes the `#root` container.
+4. eslint.config.js:
+   - Location: `eslint.config.js`
+   - Purpose: Flat ESLint 9+ configuration enforcing modern JavaScript standards,
+     React Hooks rules (`react-hooks/rules-of-hooks`, `react-hooks/exhaustive-deps`),
+     and React Refresh rules.
+5. vercel.json:
+   - Location: `vercel.json`
+   - Purpose: Production deployment configuration for Vercel. Configures CORS headers
+     for `/api/(.*)` routes and adds client-side SPA URL rewrites (`/((?!api/.*).*)`
+     -> `/`) so that hard refreshes on sub-routes (e.g. `/users`, `/payments`) load
+     the React app correctly rather than returning HTTP 404.
+6. .env / .env.example / example.env:
+   - Location: `.env`
+   - Purpose: Stores private runtime credentials, including `VITE_GROQ_API_KEY`,
+     `VITE_OPENROUTER_API_KEY`, `BREVO_API_KEY`, `MAIL_USERNAME`, `MAIL_PASSWORD`,
+     and `BREVO_SENDER_EMAIL`.
+7. .gitignore:
+   - Location: `.gitignore`
+   - Purpose: Prevents committed files like `node_modules/`, `.env`, `dist/`, and
+     local OS caches from polluting git history.
+8. README.md:
+   - Location: `README.md`
+   - Purpose: Comprehensive 600+ line technical README covering executive overviews,
+     architecture diagrams, feature matrix, installation, and company compliance.
+
+3.3 Public Static Assets (public/)
+----------------------------------
+1. public/aifagenlogo.png: Full color horizontal brand banner with navy and cyan
+   styling used across marketing cards.
+2. public/aifagenlogo-icon.png: Compact square brand icon mark used in the login
+   page hero, browser favicon, and drawer headers.
+3. public/aifagenlogo.svg: High-resolution vector logo used for crisp display
+   across high-DPI displays.
+4. public/_redirects: Fallback SPA routing rewrite file for static hosting providers
+   such as Netlify or Cloudflare Pages (`/*  /index.html  200`).
+
+3.4 Backend Serverless Functions (api/)
+---------------------------------------
+1. api/send-email.js:
+   - Location: `api/send-email.js`
+   - Purpose: Node.js serverless function executing on Vercel (or any cloud lambda
+     runtime). Handles incoming POST requests containing email recipients, HTML
+     content, and Base64 attachments. Dispatches first through Brevo REST API v3
+     (bypassing cloud IP restrictions), and if that fails, cascades to Brevo SMTP
+     via Nodemailer with comprehensive error diagnostics.
+
+3.5 Application Entry & Shell (src/)
+------------------------------------
+1. src/main.jsx:
+   - Location: `src/main.jsx`
+   - Purpose: React 19 mount file. Creates the root DOM tree via `ReactDOM.createRoot`
+     and renders `<App />` within `React.StrictMode`.
+2. src/App.jsx:
+   - Location: `src/App.jsx`
+   - Purpose: Master application container. Implements:
+     - Authentication Session Gate: Checks `localStorage` for `aifagen-admin-session`.
+       If absent, renders `<Login />`; if present, renders the main dashboard shell.
+     - Global State Providers: Manages search term, collapsed sidebar state, mobile
+       drawer toggle, date range selection, and dark/light mode.
+     - React Router 7 Route Table: Declares all 13 application routes.
+     - Voice Navigation Fallback: Resolves verbal commands into navigation paths.
+     - Floating AI Assistants Dock: Mounts the persistent `<VoiceAgent />` and
+       `<Chatbot />` triggers in the bottom-right corner of all screens.
+3. src/App.css:
+   - Location: `src/App.css`
+   - Purpose: Global stylesheet defining:
+     - Comprehensive CSS variables for Light and Dark themes.
+     - App layout grids (`.app-layout`, `.main-wrapper`, `.content-area`).
+     - Responsive mobile drawer backdrops and slide-in off-canvas menus.
+     - Floating AI dock styling, tooltips, and toast notifications.
+4. src/index.css:
+   - Location: `src/index.css`
+   - Purpose: Foundational CSS reset. Normalizes box-sizing, margins, font smoothing,
+     and body backgrounds.
+
+3.6 Pages Layer (src/pages/ - 26 files)
+---------------------------------------
+Every page is structured as a paired `.jsx` React component and a dedicated `.css`
+stylesheet for complete encapsulation:
+1.  Login.jsx & Login.css: Secure split-card login with quick persona switching.
+2.  Dashboard.jsx & Dashboard.css: Executive telemetry, stat cards, revenue chart, alerts.
+3.  Users.jsx & Users.css: Candidate roster, ATS score breakdown, batch actions.
+4.  Payments.jsx & Payments.css: Financial ledger, subscription plans, pricing matrix.
+5.  Jobs.jsx & Jobs.css: Crawled jobs board, scraper feeds, match scores.
+6.  InternalJobs.jsx & InternalJobs.css: Direct hiring requisitions for AIFaGen staff.
+7.  JobSources.jsx & JobSources.css: Scraper diagnostics, run intervals, crawler health.
+8.  Interviews.jsx & Interviews.css: AI technical mock interview scheduling & scorecards.
+9.  AIUsage.jsx & AIUsage.css: LLM token metrics, latency benchmarks, feature cost breakdown.
+10. Reports.jsx & Reports.css: BI report generator with interactive modal preview and export.
+11. AuditLog.jsx & AuditLog.css: Security audit trail with before/after payload diffs.
+12. TeamMembers.jsx & TeamMembers.css: Staff directory, permission scopes, role management.
+13. Settings.jsx & Settings.css: Company profile, Brevo/Groq credentials, security controls.
+
+3.7 Components Layer (src/components/ - 44 files)
+-------------------------------------------------
+Each component resides in its own directory with dedicated `.jsx` and `.css` files:
+1.  Sidebar/ (Sidebar.jsx, Sidebar.css)
+2.  Header/ (Header.jsx, Header.css)
+3.  StatCard/ (StatCard.jsx, StatCard.css)
+4.  RevenueChart/ (RevenueChart.jsx, RevenueChart.css)
+5.  AttentionBanner/ (AttentionBanner.jsx, AttentionBanner.css)
+6.  ExpiringPlansTable/ (ExpiringPlansTable.jsx, ExpiringPlansTable.css)
+7.  JobSourceStatusTable/ (JobSourceStatusTable.jsx, JobSourceStatusTable.css)
+8.  AdminActivityFeed/ (AdminActivityFeed.jsx, AdminActivityFeed.css)
+9.  UsersByPlan/ (UsersByPlan.jsx, UsersByPlan.css)
+10. UserDetailsDrawer/ (UserDetailsDrawer.jsx, UserDetailsDrawer.css)
+11. BulkActionBar/ (BulkActionBar.jsx, BulkActionBar.css)
+12. PaymentDetailsDrawer/ (PaymentDetailsDrawer.jsx, PaymentDetailsDrawer.css)
+13. ManagePlansView/ (ManagePlansView.jsx, ManagePlansView.css)
+14. PlanModal/ (PlanModal.jsx, PlanModal.css)
+15. JobDetailsDrawer/ (JobDetailsDrawer.jsx, JobDetailsDrawer.css)
+16. JobSourceDetailsDrawer/ (JobSourceDetailsDrawer.jsx, JobSourceDetailsDrawer.css)
+17. InterviewDetailsDrawer/ (InterviewDetailsDrawer.jsx, InterviewDetailsDrawer.css)
+18. AIFeatureDetailsDrawer/ (AIFeatureDetailsDrawer.jsx, AIFeatureDetailsDrawer.css)
+19. AuditEventDetailsDrawer/ (AuditEventDetailsDrawer.jsx, AuditEventDetailsDrawer.css)
+20. MemberDetailsDrawer/ (MemberDetailsDrawer.jsx, MemberDetailsDrawer.css)
+21. VoiceAgent/ (VoiceAgent.jsx, VoiceAgent.css)
+22. Chatbot/ (Chatbot.jsx, Chatbot.css)
+
+3.8 Services Layer (src/services/ - 3 files)
+--------------------------------------------
+1. mailService.js (49,407 bytes, 1,311 lines): Universal report generator, data extractor,
+   HTML builder, AutoTable PDF builder, UTF-8 BOM CSV builder, Brevo dispatcher.
+2. voiceAgentService.js (11,830 bytes, 356 lines): Speech recognition processing,
+   natural language intent mapping, metadata router, action dispatcher.
+3. chatbotService.js (10,205 bytes, 231 lines): Application context assembler,
+   PII masking, Groq/OpenRouter fallback client, response sanitizer.
+
+3.9 Data Registries & Mock State (src/data/ - 17 files)
+-------------------------------------------------------
+17 modular JavaScript datasets that provide deterministic in-memory state, metrics,
+and collections for all portal operations. Detailed in Section 7.
+
+3.10 Codebase File Count Metrics
+--------------------------------
+- Total Pages: 13 JSX + 13 CSS = 26 files
+- Total UI Components: 22 JSX + 22 CSS = 44 files
+- Total Services: 3 JavaScript files
+- Total Data Registries: 17 JavaScript files
+- Root & Serverless files: 15 files
+Total Codebase Files: 105+ active source files.
+
+================================================================================
+4. DEEP-DIVE INTO ALL 13 APPLICATION PAGES
+================================================================================
+
+4.1 Login & Authentication (/login)
+-----------------------------------
+- What It Does:
+  Provides the gateway to the admin portal. Renders a modern split-card visual
+  layout with the AIFaGen brand hero on the left and an interactive sign-in card
+  on the right. It includes quick-persona one-click login buttons for "Lead Admin"
+  (Rohith P) and "Operations Staff", password visibility toggles, and integrated
+  modal dialogs for enterprise IT support and privacy compliance.
+- Exact Reason Added:
+  To prevent unauthorized access to sensitive candidate data, financial transaction
+  ledgers, and infrastructure credentials. The quick-persona switcher was added
+  to allow developers, quality engineers, and executives to test different permission
+  levels without repeatedly typing long passwords during testing and demonstrations.
+- How It Helps:
+  Maintains secure session state in `localStorage` (`aifagen-admin-session`). If an
+  admin's session expires or they log out, the entire dashboard is unmounted,
+  protecting candidate PII.
+
+4.2 Executive Command Desk (/dashboard)
+---------------------------------------
+- What It Does:
+  Acts as the primary landing dashboard. Displays a real-time telemetry indicator
+  with a pulsing heartbeat dot, an Attention Alert Banner highlighting system
+  blockers, 4 core KPI Stat Cards (Total Candidates, Paying Subscribers, Paid
+  Conversion Rate, and Monthly Recurring Revenue), the dynamic Revenue Trend Graph,
+  the Expiring Plans Table, the Job Source Crawler Status Table, and the live Admin
+  Activity Feed.
+- Exact Reason Added:
+  Leadership and operations teams need an immediate, high-altitude view of platform
+  vital signs without digging into separate sub-pages.
+- How It Helps:
+  Reduces morning operational audit time from 30 minutes to 10 seconds. Alerts
+  admins instantly if scrapers are down or if high-value enterprise subscriptions
+  are expiring.
+
+4.3 Candidate Roster & ATS Placement Desk (/users)
+--------------------------------------------------
+- What It Does:
+  Manages thousands of active tech job seekers. Features a multi-filter toolbar
+  (filter by Plan: All, Basic, Premium; Account Status: Active, Suspended; Visa
+  Eligibility: H-1B, STEM OPT, Green Card, US Citizen; Location; Area of Interest).
+  Clicking any candidate opens the `UserDetailsDrawer` showcasing their ATS resume
+  match percentage, keyword analysis, target roles, and a plan upgrade tool.
+  Selecting multiple checkboxes triggers the floating `BulkActionBar` for batch
+  operations.
+- Exact Reason Added:
+  AIFaGen Labs' core business model is candidate career acceleration. Recruiter
+  teams need an efficient ATS database to match candidates to scraped tech jobs
+  and ensure their subscription status is current.
+- How It Helps:
+  Enables reverse recruiters to filter candidates ready for placement in under 3
+  seconds, bulk upgrade candidates to Premium tiers, and export targeted lists to
+  Excel.
+
+4.4 Financial Billing, Transactions & Plan Tiers (/payments, /plans)
+--------------------------------------------------------------------
+- What It Does:
+  Unifies financial accounting and subscription tier administration:
+  - Tab 1 (Transactions): Displays historical billing records, invoice numbers,
+    transaction dates, candidate names, amounts in INR (₹), payment gateways
+    (Razorpay, Stripe), and status badges (Success, Pending, Failed, Refunded).
+  - Tab 2 (Manage Plans - `/plans`): Displays active tier cards (Basic Plan ₹799/mo,
+    Premium Plan ₹1,999/mo, Enterprise Custom), subscriber counts, feature lists,
+    and revenue contributions. Includes the `PlanModal` to edit or launch new plans.
+- Exact Reason Added:
+  Managing billing through external Stripe/Razorpay consoles prevents recruiters
+  from knowing if a candidate's plan lapsed before scheduling mock interviews.
+- How It Helps:
+  Allows staff to inspect payment gateway IDs, re-send receipts, issue refunds,
+  adjust pricing tiers, and identify failed transactions to recover lost revenue.
+
+4.5 Job Pipeline, Market Crawlers & Internal Openings (/jobs)
+-------------------------------------------------------------
+- What It Does:
+  A unified 3-tab employment hub:
+  - Tab 1: All Crawled Jobs (15,000+ postings aggregated across LinkedIn, Indeed,
+    Naukri, Monster, and Glassdoor, with filters for Remote, Experience, Stack).
+  - Tab 2: Market Feeds (Quick view of platform-specific feeds).
+  - Tab 3: Internal Openings (Direct hiring for AIFaGen internal roles).
+- Exact Reason Added:
+  To eliminate the need for recruiters to browse external job sites manually. Jobs
+  are ingested automatically and matched against enrolled candidates.
+- How It Helps:
+  Recruiters can click any job to view parsed requirements, check applicant match
+  scores, and submit candidate resumes directly.
+
+4.6 Technical Mock Interview Proctoring & Pipeline (/interviews)
+----------------------------------------------------------------
+- What It Does:
+  Tracks tech candidates through their AI mock interview journey (Initial Screen,
+  Technical Coding Mock, System Design, Behavioral HR). Displays candidate
+  scorecards, data structures proficiency, algorithmic complexity scores, and mentor
+  feedback notes in the `InterviewDetailsDrawer`.
+- Exact Reason Added:
+  To provide quantifiable, objective benchmarking of candidates before pitching
+  them to US hiring managers.
+- How It Helps:
+  Identifies technical weaknesses in candidates (e.g. low system design score) so
+  mentors can schedule targeted coaching sessions.
+
+4.7 LLM Token Telemetry & Infrastructure Observability (/ai-usage)
+------------------------------------------------------------------
+- What It Does:
+  Tracks cloud AI spending and token consumption across all platform features:
+  Mock Interview Simulator, ATS Resume Parser, Autonomous Reverse Recruiter, and
+  Co-Pilot queries. Compares provider latencies (Groq vs OpenRouter) and displays
+  budget threshold alerts (80% and 95% spend warnings).
+- Exact Reason Added:
+  Unmonitored LLM API usage can lead to runaway cloud costs. Operations teams need
+  granular visibility into which feature consumes the most tokens.
+- How It Helps:
+  Prevents budget overruns, identifies prompt inefficiency, and ensures AI features
+  remain commercially profitable.
+
+4.8 Enterprise BI Reporting & Export Engine (/reports)
+------------------------------------------------------
+- What It Does:
+  Centralized business intelligence generator. Offers pre-built report templates:
+  Financial & Revenue Growth, Candidate Placement & ATS Scorecard, Crawler Reliability,
+  and AI Infrastructure Spend. Features an in-browser modal preview and 1-click
+  export to formatted CSV and vector PDF.
+- Exact Reason Added:
+  Executives and stakeholders require periodic operational summaries for board
+  meetings and regulatory compliance without manually building slide decks.
+- How It Helps:
+  Generates publication-ready, branded PDF reports and Excel-compatible CSVs in
+  seconds.
+
+4.9 Compliance Audit Forensics & Security Logging (/audit-log)
+--------------------------------------------------------------
+- What It Does:
+  Immutable operational audit ledger. Every critical administrative action (plan
+  modifications, refunds, role changes, crawler manual triggers) is recorded with
+  the actor's name, email, role, category, timestamp, and a full before/after
+  payload diff in the `AuditEventDetailsDrawer`.
+- Exact Reason Added:
+  To ensure enterprise security, prevent internal data tampering, and satisfy ISO
+  and SOC2 compliance standards.
+- How It Helps:
+  Enables security teams to trace who modified candidate records or pricing plans,
+  pinpointing exact timestamps and session fingerprints.
+
+4.10 Delivery Operations & Team Directory (/team-members)
+---------------------------------------------------------
+- What It Does:
+  Manages internal AIFaGen staff profiles (Lead Admins, Technical Mentors, Reverse
+  Recruiters, Billing Specialists). Tracks active status, assigned department,
+  hub location (e.g., Siddipet HQ), and permission scopes.
+- Exact Reason Added:
+  Operations leadership needs to manage staffing, assign recruiters to candidate
+  cohorts, and control access permissions.
+- How It Helps:
+  Allows instant onboarding of new team members, role adjustments, and staff
+  performance tracking.
+
+4.11 Platform Settings & API Configuration (/settings)
+-------------------------------------------------------
+- What It Does:
+  System configuration console covering:
+  - Corporate details (Company name, CIN number, registered Siddipet HQ address).
+  - API Credentials (Brevo API key, Groq API key, OpenRouter token, SMTP settings).
+  - Security policies (2FA toggles, session timeout limits, IP whitelists).
+  - Persistent Theme preferences (Dark / Light mode).
+- Exact Reason Added:
+  Allows platform administrators to update API keys and security parameters
+  dynamically without modifying source code or redeploying the application.
+- How It Helps:
+  Eliminates downtime when rotating API keys or updating corporate contact info.
+
+4.12 Internal Job Requisitions Board (/jobs/internal)
+-----------------------------------------------------
+- What It Does:
+  A dedicated board for managing job openings within AIFaGen Labs itself (e.g.
+  Senior AI Mentors, Prompt Engineers, Reverse Recruiter Leads).
+- Exact Reason Added:
+  To keep internal company hiring separate from external crawled job market data.
+- How It Helps:
+  Enables internal HR staff to track applicants, post new salary brackets, and
+  close filled positions.
+
+4.13 Job Crawler Telemetry & Scraper Health (/jobs/sources)
+-----------------------------------------------------------
+- What It Does:
+  Monitors web ingestion scrapers (LinkedIn, Naukri, Indeed, Glassdoor, Monster).
+  Displays scraper status (Healthy, Stalled, Failed, Rate-Limited), last crawl
+  timestamp, next scheduled run, error notes, and a "Force Run Now" manual trigger.
+- Exact Reason Added:
+  External job platforms frequently change their HTML structure or rate-limit IPs,
+  causing scrapers to fail silently.
+- How It Helps:
+  Alerts engineers immediately when a crawler breaks, preventing the job board from
+  becoming stale.
+
+================================================================================
+5. DEEP-DIVE INTO ALL 22 UI COMPONENTS
+================================================================================
+
+5.1 Sidebar (src/components/Sidebar/)
+-------------------------------------
+- Renders: The primary navigation drawer with corporate brand logos, categorized
+  navigation links with badges, collapse/expand toggle button, theme switch, and
+  user profile sign-out trigger.
+- Why Added: To provide intuitive, structured access to all 13 application pages.
+- How It Helps: Supports both expanded mode (with detailed descriptions) and
+  collapsed icon-only mode to maximize screen real estate on smaller laptops.
+
+5.2 Header (src/components/Header/)
+-----------------------------------
+- Renders: The top utility bar with mobile hamburger menu, omnisearch input box,
+  date range selector (Today, Last 7 Days, Last 30 Days, This Quarter, Year-to-Date),
+  active persona badge, and microphone quick-trigger for the Voice Agent.
+- Why Added: Provides universal controls that remain accessible regardless of which
+  page is currently open.
+- How It Helps: Allows admins to filter data periods or launch voice workflows
+  with zero navigation friction.
+
+5.3 RevenueChart (src/components/RevenueChart/)
+----------------------------------------------
+- Renders: The interactive revenue trend visualization card on the dashboard.
+  Features timeframe tabs (7D, 30D, 90D, 1Y), metric tabs (Revenue, Sign-ups,
+  Paying Users), dual view modes (Bar Chart & Area Spline), mathematical Bézier
+  trend curves, and hover tooltips with boundary clamping.
+- Why Added: To visually communicate financial trajectories, growth percentages,
+  and conversion rates.
+- How It Helps: Eliminates guesswork; leadership can inspect revenue peaks, daily
+  averages, and period totals at a glance.
+
+5.4 StatCard (src/components/StatCard/)
+---------------------------------------
+- Renders: Top-level KPI metric cards featuring large bold typography, positive/
+  negative growth pill indicators, trend comparisons, and mini SVG sparklines.
+- Why Added: High-level executives need instant clarity on critical business numbers.
+- How It Helps: Immediately signals whether key metrics are growing (+8.3%) or
+  declining without requiring manual calculation.
+
+5.5 AttentionBanner (src/components/AttentionBanner/)
+-----------------------------------------------------
+- Renders: High-priority system alert cards at the top of the dashboard for urgent
+  operational issues (failed job scrapers, expired subscriptions, failed payments).
+- Why Added: Critical issues were previously overlooked in busy tabular pages.
+- How It Helps: Displays a direct "Resolve Now" action button that routes the
+  admin straight to the affected subsystem.
+
+5.6 ExpiringPlansTable (src/components/ExpiringPlansTable/)
+-----------------------------------------------------------
+- Renders: Tabular list of candidates whose paid plans expire within 5 to 14 days,
+  complete with urgency badges and a one-click renewal trigger.
+- Why Added: To prevent subscriber churn before plans lapse.
+- How It Helps: Enables recruiters to proactively contact candidates or trigger
+  automated renewal reminders, protecting recurring revenue.
+
+5.7 JobSourceStatusTable (src/components/JobSourceStatusTable/)
+---------------------------------------------------------------
+- Renders: Live telemetry table of all 5 web crawlers showing health pills, last
+  run times, and 24-hour ingested job volumes.
+- Why Added: Scraper reliability is vital to AIFaGen's reverse recruiting operations.
+- How It Helps: Allows engineers to spot crawler stalls in seconds.
+
+5.8 AdminActivityFeed (src/components/AdminActivityFeed/)
+---------------------------------------------------------
+- Renders: Real-time chronological audit stream of staff activities with avatars,
+  timestamps, and action badges.
+- Why Added: Provides immediate operational visibility into who changed what across
+  the team.
+- How It Helps: Prevents duplicate work and facilitates cross-team coordination.
+
+5.9 UsersByPlan (src/components/UsersByPlan/)
+---------------------------------------------
+- Renders: Visual proportional progress bar and breakdown of candidates across
+  subscription tiers (Premium, Basic, Free Trial).
+- Why Added: To monitor paid tier conversion and tier migration.
+- How It Helps: Shows what percentage of the user base is monetized.
+
+5.10 UserDetailsDrawer (src/components/UserDetailsDrawer/)
+----------------------------------------------------------
+- Renders: Slide-out profile drawer displaying candidate ATS resume score breakdown
+  (Formatting, Keyword Match, Experience Impact), tech stack tags, visa status,
+  plan modifier dropdown, and contact actions.
+- Why Added: Recruiter teams need deep candidate insights without navigating away
+  from the candidate table.
+- How It Helps: Saves recruiter time and enables instant plan upgrades.
+
+5.11 BulkActionBar (src/components/BulkActionBar/)
+--------------------------------------------------
+- Renders: Floating action bar anchored at the bottom of the screen whenever
+  candidate checkboxes are selected.
+- Why Added: Operating on candidates one by one is painfully slow.
+- How It Helps: Supports batch plan upgrades, batch CSV exports, and batch
+  suspensions in a single click.
+
+5.12 PaymentDetailsDrawer (src/components/PaymentDetailsDrawer/)
+----------------------------------------------------------------
+- Renders: Slide-out invoice drawer with gateway transaction IDs, payment methods
+  (UPI, Card, NetBanking), card brand, tax breakdowns, and receipt downloads.
+- Why Added: For financial accounting, dispute resolution, and billing audits.
+- How It Helps: Speeds up customer payment support and dispute verification.
+
+5.13 ManagePlansView (src/components/ManagePlansView/)
+------------------------------------------------------
+- Renders: Tier comparison cards showing pricing, billing cycles, subscriber
+  counts, and feature matrices.
+- Why Added: To centralize subscription product management.
+- How It Helps: Lets administrators adjust tier pricing and feature entitlements.
+
+5.14 PlanModal (src/components/PlanModal/)
+------------------------------------------
+- Renders: Modal dialog for creating new subscription tiers or updating existing
+  pricing, trial durations, and public visibility.
+- Why Added: Provides a safe, validated form interface for editing plan attributes.
+- How It Helps: Prevents malformed pricing configurations.
+
+5.15 JobDetailsDrawer (src/components/JobDetailsDrawer/)
+--------------------------------------------------------
+- Renders: Slide-out drawer with scraped job descriptions, salary brackets, required
+  skills, and applicant match scoring.
+- Why Added: Recruiters need to inspect full job descriptions before matching candidates.
+- How It Helps: Eliminates the need to open external job websites.
+
+5.16 JobSourceDetailsDrawer (src/components/JobSourceDetailsDrawer/)
+--------------------------------------------------------------------
+- Renders: Slide-out drawer with scraper technical specs (HTTP status codes, proxy
+  rotation health, error logs, and crawl history).
+- Why Added: Diagnostic interface for crawler troubleshooting.
+- How It Helps: Helps engineers identify whether an error is caused by IP blocks,
+  CAPTCHA challenges, or DOM changes.
+
+5.17 InterviewDetailsDrawer (src/components/InterviewDetailsDrawer/)
+--------------------------------------------------------------------
+- Renders: Slide-out drawer with mock interview transcripts, coding question replays,
+  system design scores, and mentor hiring recommendations.
+- Why Added: To provide deep post-interview debriefs.
+- How It Helps: Helps mentors provide constructive feedback to tech candidates.
+
+5.18 AIFeatureDetailsDrawer (src/components/AIFeatureDetailsDrawer/)
+--------------------------------------------------------------------
+- Renders: Telemetry drawer for specific AI features showing token consumption,
+  average latency (TTFT), model name, and 30-day expenditure.
+- Why Added: Detailed cost accounting for cloud AI models.
+- How It Helps: Pinpoints expensive prompts and guides model optimization.
+
+5.19 AuditEventDetailsDrawer (src/components/AuditEventDetailsDrawer/)
+----------------------------------------------------------------------
+- Renders: Slide-out drawer displaying before/after JSON diffs of modified records,
+  origin IP addresses, user agents, and session IDs.
+- Why Added: Forensics and security audit compliance.
+- How It Helps: Provides incontrovertible evidence during security audits.
+
+5.20 MemberDetailsDrawer (src/components/MemberDetailsDrawer/)
+--------------------------------------------------------------
+- Renders: Slide-out drawer for internal staff profiles, showing assigned roles,
+  department permissions, active projects, and contact info.
+- Why Added: For staff directory administration and access control.
+- How It Helps: Enables managers to update staff permissions instantly.
+
+5.21 VoiceAgent (src/components/VoiceAgent/)
+--------------------------------------------
+- Renders: Floating microphone button and modal assistant that captures voice,
+  transcribes speech via Web Speech API, displays interactive status bubbles,
+  and dispatches universal email reports with live PDF and CSV attachments.
+- Why Added: Enables 100% hands-free executive control and zero-touch report dispatch.
+- How It Helps: Turns a 15-minute manual reporting process into a 4-second spoken
+  command.
+
+5.22 Chatbot (src/components/Chatbot/)
+--------------------------------------
+- Renders: Floating operations AI Co-Pilot with quick-prompt chips, chat history,
+  expandable dialog window, and sanitized markdown output.
+- Why Added: Gives administrators instant, cross-cutting business intelligence
+  across all portal data without searching multiple pages.
+- How It Helps: Answers questions like "What is our net revenue this month and which
+  crawler failed?" in under 500 milliseconds.
+
+================================================================================
+6. DEEP-DIVE INTO THE 3 CORE SERVICES
+================================================================================
+
+6.1 mailService.js (Universal Reporting & Brevo Email Dispatcher)
+-----------------------------------------------------------------
+- File Path: `src/services/mailService.js`
+- Key Exported Functions:
+  1. `sendEmailTool({ toEmail, subject, htmlContent, text, attachments })`
+  2. `analyzeAndExtractDataForQuery(userQuery)`
+  3. `buildDynamicReportHtml(analyzedData, recipientEmail)`
+  4. `buildDynamicExcel(analyzedData)`
+  5. `buildDynamicPdf(analyzedData)`
+  6. `downloadFile(filename, content, mimeType)`
+  7. `executeUniversalReportWorkflow({ userQuery, recipientEmail, onProgress })`
+  8. `executeInterviewReportWorkflow({ recipientEmail, onProgress })`
+
+- How It Works:
+  - Step 1 (Query Analysis): Inspects the spoken or typed user prompt using semantic
+    pattern matching to determine which domain is requested (Interviews, Payments,
+    Users, Jobs, Crawlers, AI Telemetry, Team, Audit, Settings, Dashboard).
+  - Step 2 (Data Extraction): Pulls fresh records directly from the corresponding
+    data registry in `src/data/`.
+  - Step 3 (HTML Assembly): Constructs a responsive HTML email containing corporate
+    navy headers, KPI summary blocks, formatted data tables, and an official AIFaGen
+    corporate footer.
+  - Step 4 (Document Generation):
+    - Generates an Excel-compatible CSV with UTF-8 BOM encoding.
+    - Generates an executive PDF document using `jsPDF` and `jspdf-autotable`
+      with auto-wrapping table cells, page numbers, and confidential footers.
+  - Step 5 (Secure Cloud Dispatch): Dispatches the payload through the serverless
+    proxy (`/api/send-email`), using Brevo REST API v3 as primary, and falling
+    back to Brevo SMTP via Nodemailer.
+
+6.2 voiceAgentService.js (Voice Intent & Action Router)
+-------------------------------------------------------
+- File Path: `src/services/voiceAgentService.js`
+- Key Exported Functions:
+  1. `determineActionFromVoice(transcript, metadata)`
+  2. `executeAgentAction(actionResult, callbacks)`
+
+- How It Works:
+  - Takes raw transcribed text from the Web Speech API and matches it against
+    `sidebarMetadata.js` using fast regex heuristics and ultra-fast LLM inference
+    (Groq Llama-3.3-70B with OpenRouter fallback).
+  - Returns a structured action object:
+    `{ action: "NAVIGATE" | "SEND_EMAIL" | "CONTROL", id, path, feedback }`.
+  - Executes the action: navigates to routes, toggles themes, or triggers
+    `executeUniversalReportWorkflow`.
+
+6.3 chatbotService.js (Executive AI Operations Co-Pilot)
+--------------------------------------------------------
+- File Path: `src/services/chatbotService.js`
+- Key Exported Functions:
+  1. `getApplicationContext()`
+  2. `cleanChatbotResponse(text)`
+  3. `sendChatMessage(messages)`
+
+- How It Works:
+  - Assembles fresh, sanitized snapshots of all platform data (MRR, candidate roster,
+    job crawlers, failed transactions, team headcount, AI token burn).
+  - Applies strict PII masking (phones formatted as `(•••) •••-1234`, emails
+    formatted as `ro••••@domain.com`).
+  - Injects strict platform guardrails (rejects non-platform queries like recipes
+    or general trivia).
+  - Queries Groq Cloud with OpenRouter fallback.
+  - Cleans the output using `cleanChatbotResponse` to strip distracting markdown
+    asterisks, hashtags, and raw symbols for clean presentation.
+
+================================================================================
+7. DEEP-DIVE INTO THE 17 DATA REGISTRIES (src/data/)
+================================================================================
+
+7.1 adminsData.js:
+    Stores authorized administrator profiles, email addresses, assigned security
+    roles, and quick-login persona presets.
+7.2 aiUsageData.js:
+    Stores LLM telemetry records, tokens consumed by feature, average TTFT latency,
+    provider breakdown (Groq vs OpenRouter), and monthly expenditure.
+7.3 auditLogData.js:
+    Stores immutable security audit trail records and provides the `logAuditAction`
+    helper function to dynamically append new admin events with diff payloads.
+7.4 dashboardData.js:
+    Stores the executive dashboard's 4 stat cards, multi-period revenue trend datasets
+    (7D, 30D, 90D, 1Y), urgent attention alerts, and expiring subscription records.
+7.5 globalSearch.js:
+    The omnisearch indexing engine. Defines 15 searchable data collections, text
+    normalization routines, and the `searchAllData` function.
+7.6 internalJobsData.js:
+    Stores hiring requisitions posted directly by AIFaGen Labs for its internal
+    staffing needs.
+7.7 interviewsData.js:
+    Stores technical mock interview records, evaluation scorecards (coding, system
+    design, communication), candidate pipeline stages, and mentor notes.
+7.8 jobSourcesData.js:
+    Stores web crawler metadata for LinkedIn, Indeed, Naukri, Glassdoor, and Monster,
+    including run intervals, HTTP status codes, and error diagnostics.
+7.9 jobsData.js:
+    Stores 15,000+ crawled tech job listings, applicant match scores, tech stack tags,
+    and work mode filters.
+7.10 paymentsData.js:
+     Stores historical billing transactions, invoice IDs, gateway references
+     (Razorpay, Stripe), payment methods, and financial KPIs.
+7.11 plansData.js:
+     Stores subscription tier definitions (Basic ₹799/mo, Premium ₹1,999/mo),
+     feature entitlements, subscriber counts, and plan subscriber lists.
+7.12 reportsData.js:
+     Stores pre-built BI report templates, report generation history, and export logs.
+7.13 servicesData.js:
+     Stores third-party cloud service integration statuses (Brevo API, Groq Cloud,
+     OpenRouter, Scraper Proxies).
+7.14 settingsData.js:
+     Stores corporate entity metadata (CIN, headquarters address, legal name),
+     system configurations, and settings navigation sections.
+7.15 sidebarMetadata.js:
+     Stores voice navigation aliases, search keywords, route mappings, and DOM
+     element IDs used by the Voice Agent to navigate the portal.
+7.16 teamData.js:
+     Stores internal staff profiles, department assignments, hub locations, and
+     permission scopes.
+7.17 usersData.js:
+     Stores the master candidate roster, ATS resume scores, visa statuses,
+     subscription plans, and placement readiness ratings.
+
+================================================================================
+8. FLAGSHIP SUBSYSTEM ARCHITECTURAL BREAKDOWNS
+================================================================================
+
+8.1 The Autonomous AI Voice Agent & Universal Email Dispatcher
+--------------------------------------------------------------
+The Voice Agent transforms administrative reporting:
+1. Spoken Audio Capture: Administrator clicks the floating microphone and speaks:
+   "Mail me the last 7 days interview reports to rohith.p@aifagenlabs.com".
+2. Intent & Email Extraction: `determineActionFromVoice` detects the mail keyword,
+   extracts the target email address, and triggers `send_universal_report`.
+3. Data Synthesis: `analyzeAndExtractDataForQuery` pulls live interview scorecards
+   and candidates from `interviewsData.js`.
+4. Document Generation: Generates an Excel-compatible CSV and vector PDF document.
+5. Cloud Dispatch: Dispatches via Brevo REST API v3 via `/api/send-email`.
+6. Spoken Confirmation: Web Speech Synthesis speaks back:
+   "Report successfully dispatched to rohith.p@aifagenlabs.com with PDF and CSV attachments."
+
+8.2 The Executive AI Operations Co-Pilot (Chatbot)
+--------------------------------------------------
+Anchored in the bottom-right floating dock:
+- Injects fresh application context across candidates, revenue, scrapers, and team.
+- Enforces strict PII masking on candidate phone numbers and email addresses.
+- Answers complex multi-step analytical questions in under 450ms via Groq Cloud.
+- Cleans and sanitizes response text to eliminate raw asterisks and hash marks.
+
+8.3 The Interactive Revenue Trend Graph Engine
+----------------------------------------------
+Located on the Executive Dashboard:
+- Math & Bézier Splines: Generates smooth Catmull-Rom cubic Bézier curves
+  (`d="M... C..."`) across SVG viewports with zero external chart library overhead.
+- Dynamic Bar Scaling: Automatically adjusts bar column widths (`max-width: 52px`
+  for 7D, `36px` for 14D, `20px` for 30D) to fill 100% of the canvas.
+- Tooltip Clamping: Floating tooltip calculates viewport bounding rects in real-time,
+  clamping positions to prevent clipping at the left and right screen boundaries.
+
+8.4 The Omnisearch Global Search Engine (15-Collection Indexing)
+----------------------------------------------------------------
+Located in the top Header:
+- Indexes 15 distinct datasets simultaneously (Candidates, Jobs, Payments, Staff,
+  Interviews, AI features, Audit logs, Plans, Scrapers, Alerts, Settings).
+- Real-time in-memory filtering: Matches multi-term queries across all columns
+  with sub-5ms response time.
+
+================================================================================
+9. CRITICAL POINTS TO REMEMBER, GOTCHAS & SECURITY SAFEGUARDS
+================================================================================
+
+9.1 Brevo Email Sender Verification Rules:
+    Brevo's transactional email service enforces strict sender verification.
+    The sender email address MUST be an authorized, verified sender inside the
+    Brevo account (such as `rohithvadla07@gmail.com`). Using unverified addresses
+    like `support@aifagenlabs.com` before domain validation will cause Brevo to
+    reject delivery with HTTP 400.
+
+9.2 Brevo SMTP Error 525 on Dynamic Cloud IPs:
+    Cloud serverless hosts (like Vercel or AWS Lambda) assign dynamic outbound IP
+    addresses. Brevo's SMTP relay (`smtp-relay.brevo.com`) rejects connections from
+    unrecognized dynamic IPs with error `525 5.7.13 Unauthorized IP address`.
+    CRITICAL SOLUTION: The codebase prioritizes Brevo REST API v3
+    (`https://api.brevo.com/v3/smtp/email`), which authenticates via `api-key`
+    and has NO IP restrictions. Ensure `BREVO_API_KEY` is configured in production.
+
+9.3 Web Speech API Chromium Engine Requirement:
+    The HTML5 Web Speech Recognition API (`webkitSpeechRecognition`) is natively
+    supported in Chromium-based browsers (Google Chrome, Microsoft Edge, Brave,
+    Opera). Mozilla Firefox and some versions of Safari do not support speech
+    recognition out of the box. Administrators should use Chrome or Edge for voice
+    features.
+
+9.4 PII Masking Safeguards Before LLM Context Injection:
+    To comply with privacy laws, candidate phone numbers and emails are masked in
+    `src/services/chatbotService.js` before being sent to external LLMs. Candidate
+    identities are never leaked in unmasked form to external AI APIs.
+
+9.5 Chatbot Response Sanitizer:
+    Raw LLM outputs often contain markdown formatting symbols (`***bold***`,
+    `### Header`, `#hashtag`, emojis). The `cleanChatbotResponse` function strips
+    these artifacts to maintain a polished, professional executive aesthetic.
+
+9.6 Voice Navigation Fallback Architecture:
+    When a voice navigation command is issued, the system first attempts to find
+    and click the matching DOM button on the sidebar. If the sidebar is collapsed
+    or the element is not found, the `handleVoiceNavigateFallback` handler in
+    `App.jsx` resolves the route string and executes `navigate(path)` programmatically.
+
+9.7 LocalStorage Keys & Session Lifecycle:
+    The application relies on three primary `localStorage` keys:
+    - `aifagen-admin-session`: Stores active user session JSON. Removing it logs out.
+    - `aifagen-theme`: Stores theme preference ("dark" or "light").
+    - `aifagen_recipient_email`: Stores the default email recipient for voice reports.
+
+9.8 Graph Tooltip Viewport Boundary Clamping:
+    When hovering over the Revenue chart on extreme left or right data points,
+    floating tooltips can overflow the viewport and create horizontal scrollbars.
+    The component clamps the tooltip offset (`Math.max(12, Math.min(x, width - 220))`)
+    to keep it fully visible within the container.
+
+================================================================================
+10. INSTALLATION, LOCAL DEVELOPMENT & DEPLOYMENT GUIDE
+================================================================================
+
+10.1 Environment Variables Setup (.env)
+---------------------------------------
+Create a `.env` file in the project root with the following configuration:
+
+```env
+# 1. Primary Ultra-Fast LLM API Key (Groq Cloud)
+VITE_GROQ_API_KEY=gsk_your_groq_api_key_here
+
+# 2. Secondary Cascading LLM API Key (OpenRouter)
+VITE_OPENROUTER_API_KEY=sk-or-v1-your_openrouter_api_key_here
+
+# 3. Brevo (Sendinblue) Transactional REST API Key (v3)
+BREVO_API_KEY=xkeysib-your_brevo_api_key_here
+
+# 4. Brevo SMTP Credentials (Direct Fallback)
+MAIL_USERNAME=your_brevo_smtp_username@smtp-brevo.com
+MAIL_PASSWORD=xsmtpsib-your_brevo_smtp_password_here
+BREVO_SENDER_EMAIL=rohithvadla07@gmail.com
+```
+
+10.2 Local Installation & Development Commands
+----------------------------------------------
+1. Open terminal in the project directory:
+   cd "d:/aifagen dashboard project-3/aifagen-dashboard"
+
+2. Install dependencies:
+   npm install
+
+3. Start development server:
+   npm run dev
+
+4. Access the portal in browser:
+   http://localhost:5173/ (or http://localhost:5174/)
+
+5. Log in with pre-filled admin credentials:
+   Email: rohith.p@aifagenlabs.com
+   Password: Click "Sign in with Rohith P"
+
+10.3 Production Bundle Compilation
+----------------------------------
+- Build optimized production bundle:
+  npm run build
+  (Outputs minified bundle to `/dist`)
+
+- Preview the production build locally:
+  npm run preview
+
+- Run code quality linter:
+  npm run lint
+
+10.4 Vercel Serverless Function & SPA Routing Configuration
+-----------------------------------------------------------
+- The `api/send-email.js` file automatically functions as a Vercel Serverless Function.
+- The `vercel.json` rewrites ensure that all non-API routes redirect to `/index.html`
+  for smooth React Router navigation.
+- Ensure that `BREVO_API_KEY`, `VITE_GROQ_API_KEY`, and `VITE_OPENROUTER_API_KEY`
+  are added to Vercel Project Settings > Environment Variables.
+
+================================================================================
+END OF MASTER CODEBASE MANUAL · AIFAGEN INTELLIGENCE PRIVATE LIMITED
+================================================================================
