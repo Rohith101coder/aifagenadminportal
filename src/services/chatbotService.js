@@ -1,83 +1,27 @@
 import {
   initialUsersList,
   userStatsData,
-  AREAS_OF_INTEREST,
   VALID_PLANS,
-  VALID_PLAN_STATUSES,
 } from "../data/usersData.js";
 import {
   initialPaymentsList,
   paymentMetrics,
-  paymentStatusBreakdown,
-  revenueBarsData,
 } from "../data/paymentsData.js";
-import { initialJobsList, jobMetrics } from "../data/jobsData.js";
-import { initialInternalJobsList } from "../data/internalJobsData.js";
-import {
-  initialJobSourcesList,
-  jobSourcesOverviewMetrics,
-  weeklyTrendChartData,
-  VALID_SOURCE_STATUSES,
-  PROBLEM_STATUSES,
-} from "../data/jobSourcesData.js";
-import {
-  initialAiFeaturesList,
-  aiTopMetrics,
-  costByFeatureDistribution,
-  costTrendDailyBars,
-} from "../data/aiUsageData.js";
-import {
-  initialAuditLogs,
-  getStoredAuditLogs,
-} from "../data/auditLogData.js";
+import { jobMetrics } from "../data/jobsData.js";
+import { initialJobSourcesList } from "../data/jobSourcesData.js";
 import {
   statCardsData,
   attentionAlerts,
-  revenueBars,
-  revenueTrendDatasets,
-  plansDistribution,
   expiringPlans,
-  jobSources,
-  adminActivities,
 } from "../data/dashboardData.js";
 import { initialAdminsList } from "../data/adminsData.js";
 import {
-  initialTeamMembersList,
-  teamOverviewKpis,
-  bottomAnalytics,
-} from "../data/teamData.js";
-import {
-  initialCandidatesList,
-  interviewsMetrics,
-  pipelineStages,
-  outcomesDistribution,
-} from "../data/interviewsData.js";
-import {
   initialPlansList,
   initialPlanSubscribers,
-  planFeatureOptions,
 } from "../data/plansData.js";
-import {
-  initialReportsList,
-  reportsOverviewKpis,
-  reportsActivityTimeline,
-} from "../data/reportsData.js";
-import {
-  initialConnectedServices,
-} from "../data/servicesData.js";
-import {
-  initialSettingsData,
-  settingsNavSections,
-  sectionAuditHistory,
-} from "../data/settingsData.js";
 
-// Assemble all portal datasets into a comprehensive context object for the chatbot
+// Assemble essential operational data focused on common administrative queries
 export function getApplicationContext() {
-  const currentAuditLogs =
-    typeof getStoredAuditLogs === "function"
-      ? getStoredAuditLogs()
-      : initialAuditLogs;
-
   return {
     organization: {
       name: "AIFAGEN INTELLIGENCE PRIVATE LIMITED (AIFAGen Labs)",
@@ -85,93 +29,61 @@ export function getApplicationContext() {
       industry: "IT Staffing, US Candidate Marketing & Career Acceleration",
       targetMarket: "US-based tech job seekers (OPT/CPT, H-1B, Green Card, US Citizens)",
     },
-    // 1. Candidate Roster & Users Data
-    candidateRoster: {
-      userStats: userStatsData,
+    // Core administrative datasets:
+    candidates: {
+      kpis: userStatsData,
       validPlans: VALID_PLANS,
-      validPlanStatuses: VALID_PLAN_STATUSES,
-      areasOfInterest: AREAS_OF_INTEREST,
-      users: initialUsersList,
+      users: initialUsersList.map((usr) => ({
+        name: usr.name,
+        email: usr.email,
+        phone: usr.phone,
+        plan: usr.plan,
+        status: usr.accountStatus || usr.subscriptionStatus,
+        joinDate: usr.joinDate || usr.joinedDate,
+        location: usr.location,
+        areaOfInterest: usr.areaOfInterest,
+        lastPayment: usr.lastPayment,
+      })),
     },
-    // 2. Billing, Payments & Invoices Data
-    paymentsAndBilling: {
-      metrics: paymentMetrics,
-      statusBreakdown: paymentStatusBreakdown,
-      revenueBars: revenueBarsData,
-      transactions: initialPaymentsList,
-    },
-    // 3. Subscription Plans & Subscribers Data
-    subscriptionPlans: {
-      plans: initialPlansList,
+    plans: {
+      offerings: initialPlansList.map((p) => ({
+        name: p.name,
+        price: p.price,
+        billingCycle: p.billingCycle,
+        activeSubscribers: p.activeSubscribers,
+        features: p.features,
+      })),
       subscribers: initialPlanSubscribers,
-      featureOptions: planFeatureOptions,
     },
-    // 4. Job Board & Pipeline Data
-    jobs: {
-      metrics: jobMetrics,
-      crawledJobs: initialJobsList,
-      internalRequisitions: initialInternalJobsList,
+    payments: {
+      metrics: paymentMetrics,
+      recentTransactions: initialPaymentsList.map((tx) => ({
+        invoiceNo: tx.invoiceNo,
+        customer: tx.customerName || tx.userName,
+        email: tx.email,
+        plan: tx.plan,
+        amount: tx.amount,
+        status: tx.status,
+        date: tx.date,
+        method: tx.method,
+      })),
     },
-    // 5. Job Crawlers & Sources Data
-    jobSources: {
-      overviewMetrics: jobSourcesOverviewMetrics,
-      crawlers: initialJobSourcesList,
-      dashboardSources: jobSources,
-      weeklyTrends: weeklyTrendChartData,
-      validStatuses: VALID_SOURCE_STATUSES,
-      problemStatuses: PROBLEM_STATUSES,
-    },
-    // 6. AI Technical Interviews Data
-    interviewsPipeline: {
-      metrics: interviewsMetrics,
-      stages: pipelineStages,
-      outcomesDistribution: outcomesDistribution,
-      candidates: initialCandidatesList,
-    },
-    // 7. Team Members & Delivery Operations Data
-    teamAndOperations: {
-      kpis: teamOverviewKpis,
-      analytics: bottomAnalytics,
-      hub: "Siddipet",
-      teamMembers: initialTeamMembersList,
-    },
-    // 8. AI Token & Infrastructure Telemetry Data
-    aiTelemetry: {
-      metrics: aiTopMetrics,
-      costDistribution: costByFeatureDistribution,
-      dailyTrendBars: costTrendDailyBars,
-      features: initialAiFeaturesList,
-    },
-    // 9. Compliance Audit Logs Data
-    complianceAudit: {
-      logs: currentAuditLogs,
-    },
-    // 10. Executive Dashboard Telemetry Data
     dashboard: {
       statCards: statCardsData,
       urgentAlerts: attentionAlerts,
       expiringPlans: expiringPlans,
-      adminActivities: adminActivities,
-      revenueBars: revenueBars,
-      revenueTrendDatasets: revenueTrendDatasets,
-      plansDistribution: plansDistribution,
     },
-    // 11. Business Intelligence Reports Data
-    reports: {
-      kpis: reportsOverviewKpis,
-      reportsList: initialReportsList,
-      activityTimeline: reportsActivityTimeline,
+    jobsAndCrawlers: {
+      metrics: jobMetrics,
+      crawlers: initialJobSourcesList.map((src) => ({
+        name: src.name,
+        domain: src.domain,
+        status: src.status,
+        category: src.category,
+        region: src.region,
+      })),
     },
-    // 12. Connected Services Data
-    connectedServices: initialConnectedServices,
-    // 13. System Settings Data
-    platformSettings: {
-      settings: initialSettingsData,
-      navigationSections: settingsNavSections,
-      auditHistory: sectionAuditHistory,
-    },
-    // 14. Authorized Admins Data
-    admins: initialAdminsList,
+    administrators: initialAdminsList,
   };
 }
 
@@ -262,14 +174,17 @@ export async function sendChatMessage(messages) {
     content: buildSystemPrompt(appData),
   };
 
+  // Keep recent conversation history (last 8 messages) to prevent conversation token creep
+  const recentMessages = Array.isArray(messages) ? messages.slice(-8) : [];
+
   // 1. Try Groq for high-speed inference
   if (groqApiKey && !groqApiKey.includes("your_")) {
     try {
       const groqPayload = {
         model: "qwen/qwen3.8-27b",
-        messages: [systemMessage, ...messages],
+        messages: [systemMessage, ...recentMessages],
         temperature: 0.65,
-        max_tokens: 2048,
+        max_tokens: 1536,
       };
 
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -296,33 +211,37 @@ export async function sendChatMessage(messages) {
   }
 
   // 2. Fallback to OpenRouter
-  if (openRouterApiKey) {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${openRouterApiKey}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": typeof window !== "undefined" ? window.location.origin : "http://localhost:5173",
-        "X-Title": "AIFaGen Admin Portal",
-      },
-      body: JSON.stringify({
-        model: "openai/gpt-4o-mini",
-        messages: [systemMessage, ...messages],
-        temperature: 0.65,
-        max_tokens: 2048,
-      }),
-    });
+  if (openRouterApiKey && !openRouterApiKey.includes("your_")) {
+    try {
+      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${openRouterApiKey}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": typeof window !== "undefined" ? window.location.origin : "http://localhost:5173",
+          "X-Title": "AIFaGen Admin Portal",
+        },
+        body: JSON.stringify({
+          model: "openai/gpt-4o-mini",
+          messages: [systemMessage, ...recentMessages],
+          temperature: 0.65,
+          max_tokens: 1536,
+        }),
+      });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`OpenRouter Error (${response.status}): ${errorText}`);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`OpenRouter Error (${response.status}): ${errorText}`);
+      }
+
+      const result = await response.json();
+      const rawContent = result.choices?.[0]?.message?.content || "No response received.";
+      return cleanChatbotResponse(rawContent);
+    } catch (orErr) {
+      console.error("OpenRouter request failed:", orErr);
+      throw orErr;
     }
-
-    const result = await response.json();
-    const rawContent = result.choices?.[0]?.message?.content || "No response received.";
-    return cleanChatbotResponse(rawContent);
   }
 
   throw new Error("Unable to complete chat request with configured AI models.");
 }
-
