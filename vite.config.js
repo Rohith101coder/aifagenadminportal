@@ -25,11 +25,18 @@ export default defineConfig(({ mode }) => {
     process.env.MAIL_PASSWORD ||
     process.env.VITE_MAIL_PASSWORD ||
     ''
-  const senderEmail =
+  let senderEmail =
     env.BREVO_SENDER_EMAIL ||
     env.VITE_BREVO_SENDER_EMAIL ||
-    mailUsername ||
-    'support@aifagenlabs.com'
+    'rohithvadla07@gmail.com'
+
+  if (
+    !senderEmail ||
+    senderEmail.includes('smtp-brevo.com') ||
+    senderEmail.includes('aifagenlabs.com')
+  ) {
+    senderEmail = 'rohithvadla07@gmail.com'
+  }
 
   return {
     plugins: [

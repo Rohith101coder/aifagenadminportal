@@ -64,12 +64,22 @@ export default async function handler(req, res) {
     process.env.MAIL_PASSWORD ||
     process.env.VITE_MAIL_PASSWORD ||
     "";
-  const senderEmail =
+  let senderEmail =
     body.senderEmail ||
     process.env.BREVO_SENDER_EMAIL ||
     process.env.VITE_BREVO_SENDER_EMAIL ||
-    mailUsername ||
-    "support@aifagenlabs.com";
+    "rohithvadla07@gmail.com";
+
+  // Brevo rejects delivery if the sender is not a verified sender in the Brevo account.
+  // ae7227001@smtp-brevo.com is an SMTP username, not a verified sender.
+  if (
+    !senderEmail ||
+    senderEmail.includes("smtp-brevo.com") ||
+    senderEmail.includes("aifagenlabs.com") ||
+    senderEmail.includes("your_")
+  ) {
+    senderEmail = "rohithvadla07@gmail.com";
+  }
 
   let brevoApiError = null;
 

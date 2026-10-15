@@ -69,18 +69,25 @@ export async function sendEmailTool({
       process.env &&
       (process.env.BREVO_API_KEY || process.env.VITE_BREVO_API_KEY)) ||
     "";
-  const senderEmail =
+  let senderEmail =
     (typeof import.meta !== "undefined" &&
       import.meta.env &&
       (import.meta.env.BREVO_SENDER_EMAIL ||
-        import.meta.env.VITE_BREVO_SENDER_EMAIL ||
-        import.meta.env.MAIL_USERNAME)) ||
+        import.meta.env.VITE_BREVO_SENDER_EMAIL)) ||
     (typeof process !== "undefined" &&
       process.env &&
       (process.env.BREVO_SENDER_EMAIL ||
-        process.env.VITE_BREVO_SENDER_EMAIL ||
-        process.env.MAIL_USERNAME)) ||
-    "support@aifagenlabs.com";
+        process.env.VITE_BREVO_SENDER_EMAIL)) ||
+    "rohithvadla07@gmail.com";
+
+  if (
+    !senderEmail ||
+    senderEmail.includes("smtp-brevo.com") ||
+    senderEmail.includes("aifagenlabs.com") ||
+    senderEmail.includes("your_")
+  ) {
+    senderEmail = "rohithvadla07@gmail.com";
+  }
 
   const cleanAttachments = (attachments || [])
     .map((att) => ({
