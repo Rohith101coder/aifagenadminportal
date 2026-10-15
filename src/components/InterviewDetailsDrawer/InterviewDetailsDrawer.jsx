@@ -131,7 +131,7 @@ export default function InterviewDetailsDrawer({
                 />
               ) : candidate.company?.toLowerCase().includes("aifagen") ? (
                 <img
-                  src="/aifagenlogo.png"
+                  src="/aifagenlogo-icon.png"
                   alt="AiFAGen"
                   className="logo-img"
                 />

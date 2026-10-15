@@ -659,7 +659,7 @@ export default function Jobs({ globalSearchTerm = "" }) {
                               />
                             ) : job.isInternal || job.source === "AiFAGen" || job.company?.toLowerCase().includes("aifagen") ? (
                               <img
-                                src="/aifagenlogo.png"
+                                src="/aifagenlogo-icon.png"
                                 alt="AiFAGen"
                                 className="tbl-logo-img"
                               />

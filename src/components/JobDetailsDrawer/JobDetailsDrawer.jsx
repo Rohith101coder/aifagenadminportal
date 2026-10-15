@@ -79,7 +79,7 @@ export default function JobDetailsDrawer({
               />
             ) : job.isInternal || job.source === "AiFAGen" || job.company?.toLowerCase().includes("aifagen") ? (
               <img
-                src="/aifagenlogo.png"
+                src="/aifagenlogo-icon.png"
                 alt="AiFAGen"
                 className="drawer-company-logo"
               />
