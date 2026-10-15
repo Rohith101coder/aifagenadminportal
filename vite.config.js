@@ -9,13 +9,27 @@ export default defineConfig(({ mode }) => {
 
   const brevoApiKey =
     env.BREVO_API_KEY ||
+    env.VITE_BREVO_API_KEY ||
     process.env.BREVO_API_KEY ||
+    process.env.VITE_BREVO_API_KEY ||
     ''
   const mailUsername =
-    env.MAIL_USERNAME || process.env.MAIL_USERNAME || ''
-  const mailPassword = env.MAIL_PASSWORD || process.env.MAIL_PASSWORD || ''
+    env.MAIL_USERNAME ||
+    env.VITE_MAIL_USERNAME ||
+    process.env.MAIL_USERNAME ||
+    process.env.VITE_MAIL_USERNAME ||
+    ''
+  const mailPassword =
+    env.MAIL_PASSWORD ||
+    env.VITE_MAIL_PASSWORD ||
+    process.env.MAIL_PASSWORD ||
+    process.env.VITE_MAIL_PASSWORD ||
+    ''
   const senderEmail =
-    env.BREVO_SENDER_EMAIL || mailUsername || 'support@aifagenlabs.com'
+    env.BREVO_SENDER_EMAIL ||
+    env.VITE_BREVO_SENDER_EMAIL ||
+    mailUsername ||
+    'support@aifagenlabs.com'
 
   return {
     plugins: [
@@ -190,8 +204,11 @@ export default defineConfig(({ mode }) => {
     ],
     define: {
       'import.meta.env.BREVO_API_KEY': JSON.stringify(brevoApiKey),
+      'import.meta.env.VITE_BREVO_API_KEY': JSON.stringify(brevoApiKey),
       'import.meta.env.MAIL_USERNAME': JSON.stringify(mailUsername),
+      'import.meta.env.VITE_MAIL_USERNAME': JSON.stringify(mailUsername),
       'import.meta.env.BREVO_SENDER_EMAIL': JSON.stringify(senderEmail),
+      'import.meta.env.VITE_BREVO_SENDER_EMAIL': JSON.stringify(senderEmail),
     },
   }
 })
