@@ -1,35 +1,83 @@
-import { initialUsersList, userStatsData } from "../data/usersData.js";
-import { initialPaymentsList, paymentMetrics, paymentStatusBreakdown } from "../data/paymentsData.js";
+import {
+  initialUsersList,
+  userStatsData,
+  AREAS_OF_INTEREST,
+  VALID_PLANS,
+  VALID_PLAN_STATUSES,
+} from "../data/usersData.js";
+import {
+  initialPaymentsList,
+  paymentMetrics,
+  paymentStatusBreakdown,
+  revenueBarsData,
+} from "../data/paymentsData.js";
 import { initialJobsList, jobMetrics } from "../data/jobsData.js";
 import { initialInternalJobsList } from "../data/internalJobsData.js";
-import { initialJobSourcesList, jobSourcesOverviewMetrics } from "../data/jobSourcesData.js";
-import { initialAiFeaturesList, aiTopMetrics, costByFeatureDistribution } from "../data/aiUsageData.js";
-import { initialAuditLogs } from "../data/auditLogData.js";
-import { statCardsData, attentionAlerts } from "../data/dashboardData.js";
+import {
+  initialJobSourcesList,
+  jobSourcesOverviewMetrics,
+  weeklyTrendChartData,
+  VALID_SOURCE_STATUSES,
+  PROBLEM_STATUSES,
+} from "../data/jobSourcesData.js";
+import {
+  initialAiFeaturesList,
+  aiTopMetrics,
+  costByFeatureDistribution,
+  costTrendDailyBars,
+} from "../data/aiUsageData.js";
+import {
+  initialAuditLogs,
+  getStoredAuditLogs,
+} from "../data/auditLogData.js";
+import {
+  statCardsData,
+  attentionAlerts,
+  revenueBars,
+  revenueTrendDatasets,
+  plansDistribution,
+  expiringPlans,
+  jobSources,
+  adminActivities,
+} from "../data/dashboardData.js";
 import { initialAdminsList } from "../data/adminsData.js";
-import { initialTeamMembersList, teamOverviewKpis } from "../data/teamData.js";
-import { initialCandidatesList, interviewsMetrics, pipelineStages } from "../data/interviewsData.js";
+import {
+  initialTeamMembersList,
+  teamOverviewKpis,
+  bottomAnalytics,
+} from "../data/teamData.js";
+import {
+  initialCandidatesList,
+  interviewsMetrics,
+  pipelineStages,
+  outcomesDistribution,
+} from "../data/interviewsData.js";
+import {
+  initialPlansList,
+  initialPlanSubscribers,
+  planFeatureOptions,
+} from "../data/plansData.js";
+import {
+  initialReportsList,
+  reportsOverviewKpis,
+  reportsActivityTimeline,
+} from "../data/reportsData.js";
+import {
+  initialConnectedServices,
+} from "../data/servicesData.js";
+import {
+  initialSettingsData,
+  settingsNavSections,
+  sectionAuditHistory,
+} from "../data/settingsData.js";
 
-// Enterprise PII Masking Helpers to prevent exposure of sensitive personal data
-function maskPhone(phone) {
-  if (!phone) return "[Protected]";
-  const trimmed = String(phone).trim();
-  const parts = trimmed.split(" ");
-  if (parts.length >= 2) {
-    return `${parts[0]} (•••) •••-${trimmed.slice(-4)}`;
-  }
-  return `•••-•••-${trimmed.slice(-4)}`;
-}
-
-function maskEmail(email) {
-  if (!email || !String(email).includes("@")) return "[Protected]";
-  const [user, domain] = String(email).split("@");
-  if (user.length <= 2) return `${user[0]}*@${domain}`;
-  return `${user.slice(0, 2)}••••@${domain}`;
-}
-
-// Assemble sanitized portal datasets into a privacy-safe context object
+// Assemble all portal datasets into a comprehensive context object for the chatbot
 export function getApplicationContext() {
+  const currentAuditLogs =
+    typeof getStoredAuditLogs === "function"
+      ? getStoredAuditLogs()
+      : initialAuditLogs;
+
   return {
     organization: {
       name: "AIFAGEN INTELLIGENCE PRIVATE LIMITED (AIFAGen Labs)",
@@ -37,52 +85,93 @@ export function getApplicationContext() {
       industry: "IT Staffing, US Candidate Marketing & Career Acceleration",
       targetMarket: "US-based tech job seekers (OPT/CPT, H-1B, Green Card, US Citizens)",
     },
-    kpis: statCardsData.map((c) => ({ title: c.title, value: c.value, trend: c.trend || c.change })),
-    urgentAlerts: attentionAlerts.map((a) => a.title || a.message),
+    // 1. Candidate Roster & Users Data
     candidateRoster: {
-      totalSeekers: userStatsData.totalUsers,
-      activeSubscribers: userStatsData.activeSubscribers,
-      mrr: userStatsData.mrr,
-      expiringWithin7Days: userStatsData.expiringWithin7Days,
+      userStats: userStatsData,
+      validPlans: VALID_PLANS,
+      validPlanStatuses: VALID_PLAN_STATUSES,
+      areasOfInterest: AREAS_OF_INTEREST,
+      users: initialUsersList,
     },
-    finances: {
-      mrr: "$48,920.00",
-      grossRevenue30d: paymentMetrics.totalGrossRevenue,
-      netRevenue30d: paymentMetrics.totalNetRevenue,
-      failedPaymentsCount: paymentMetrics.failedPaymentsCount,
-      failedPaymentsAmount: paymentMetrics.failedPaymentsAmount,
+    // 2. Billing, Payments & Invoices Data
+    paymentsAndBilling: {
+      metrics: paymentMetrics,
+      statusBreakdown: paymentStatusBreakdown,
+      revenueBars: revenueBarsData,
+      transactions: initialPaymentsList,
     },
-    jobCrawlers: {
-      totalOpenings: jobMetrics.totalOpenings,
-      crawlers: initialJobSourcesList.map((s) => ({
-        name: s.name,
-        status: s.status,
-        note: s.note,
-        duration: s.duration,
-      })),
+    // 3. Subscription Plans & Subscribers Data
+    subscriptionPlans: {
+      plans: initialPlansList,
+      subscribers: initialPlanSubscribers,
+      featureOptions: planFeatureOptions,
     },
+    // 4. Job Board & Pipeline Data
+    jobs: {
+      metrics: jobMetrics,
+      crawledJobs: initialJobsList,
+      internalRequisitions: initialInternalJobsList,
+    },
+    // 5. Job Crawlers & Sources Data
+    jobSources: {
+      overviewMetrics: jobSourcesOverviewMetrics,
+      crawlers: initialJobSourcesList,
+      dashboardSources: jobSources,
+      weeklyTrends: weeklyTrendChartData,
+      validStatuses: VALID_SOURCE_STATUSES,
+      problemStatuses: PROBLEM_STATUSES,
+    },
+    // 6. AI Technical Interviews Data
     interviewsPipeline: {
-      summary: interviewsMetrics.map((m) => ({ title: m.title, value: m.value, change: m.change })),
-      stages: pipelineStages.map((s) => ({ stage: s.stage, count: s.count })),
+      metrics: interviewsMetrics,
+      stages: pipelineStages,
+      outcomesDistribution: outcomesDistribution,
+      candidates: initialCandidatesList,
     },
-    deliveryOperations: {
-      headcount: teamOverviewKpis.totalTeamMembers,
-      activeMentors: teamOverviewKpis.activeMembers,
+    // 7. Team Members & Delivery Operations Data
+    teamAndOperations: {
+      kpis: teamOverviewKpis,
+      analytics: bottomAnalytics,
       hub: "Siddipet",
-      sampleStaff: initialTeamMembersList.slice(0, 5).map((m) => ({ name: m.name, role: m.role, dept: m.department })),
+      teamMembers: initialTeamMembersList,
     },
+    // 8. AI Token & Infrastructure Telemetry Data
     aiTelemetry: {
-      totalTokens: aiTopMetrics.totalTokensConsumed,
-      cost30d: aiTopMetrics.totalAiExpenditure,
+      metrics: aiTopMetrics,
+      costDistribution: costByFeatureDistribution,
+      dailyTrendBars: costTrendDailyBars,
+      features: initialAiFeaturesList,
     },
+    // 9. Compliance Audit Logs Data
     complianceAudit: {
-      recentLogs: initialAuditLogs.slice(0, 4).map((l) => ({
-        date: l.date,
-        actor: l.actor,
-        eventTitle: l.eventTitle,
-        status: l.status,
-      })),
+      logs: currentAuditLogs,
     },
+    // 10. Executive Dashboard Telemetry Data
+    dashboard: {
+      statCards: statCardsData,
+      urgentAlerts: attentionAlerts,
+      expiringPlans: expiringPlans,
+      adminActivities: adminActivities,
+      revenueBars: revenueBars,
+      revenueTrendDatasets: revenueTrendDatasets,
+      plansDistribution: plansDistribution,
+    },
+    // 11. Business Intelligence Reports Data
+    reports: {
+      kpis: reportsOverviewKpis,
+      reportsList: initialReportsList,
+      activityTimeline: reportsActivityTimeline,
+    },
+    // 12. Connected Services Data
+    connectedServices: initialConnectedServices,
+    // 13. System Settings Data
+    platformSettings: {
+      settings: initialSettingsData,
+      navigationSections: settingsNavSections,
+      auditHistory: sectionAuditHistory,
+    },
+    // 14. Authorized Admins Data
+    admins: initialAdminsList,
   };
 }
 
@@ -135,7 +224,7 @@ ONLY REFUSE THESE EXACT SECRET VALUES:
 
 OUT OF SCOPE:
 - Only for topics unrelated to AiFAGen (trivia, recipes, sports, weather, etc.) reply: "This is out of my context. I can help you with platform-related questions about AiFAGen."
-- Never use this reply for anything about users, plans, payments, jobs, crawlers, or AI usage."
+- Never use this reply for anything about users, plans, payments, jobs, crawlers, or AI usage.
 
 PLATFORM OPERATIONAL CONTEXT:
 ${JSON.stringify(appData)}`;
@@ -180,7 +269,7 @@ export async function sendChatMessage(messages) {
         model: "qwen/qwen3.8-27b",
         messages: [systemMessage, ...messages],
         temperature: 0.65,
-        max_tokens: 600,
+        max_tokens: 2048,
       };
 
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -220,7 +309,7 @@ export async function sendChatMessage(messages) {
         model: "openai/gpt-4o-mini",
         messages: [systemMessage, ...messages],
         temperature: 0.65,
-        max_tokens: 800,
+        max_tokens: 2048,
       }),
     });
 
@@ -236,3 +325,4 @@ export async function sendChatMessage(messages) {
 
   throw new Error("Unable to complete chat request with configured AI models.");
 }
+

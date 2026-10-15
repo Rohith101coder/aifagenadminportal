@@ -1,15 +1,15 @@
-import { adminActivities, expiringPlans, jobSources as dashboardSources } from "./dashboardData";
-import { initialUsersList } from "./usersData";
-import { initialJobsList } from "./jobsData";
-import { initialPaymentsList } from "./paymentsData";
-import { initialTeamMembersList } from "./teamData";
-import { initialCandidatesList } from "./interviewsData";
-import { initialAiFeaturesList } from "./aiUsageData";
-import { initialAuditLogs } from "./auditLogData";
-import { initialPlansList, initialPlanSubscribers } from "./plansData";
-import { initialReportsList } from "./reportsData";
-import { initialJobSourcesList } from "./jobSourcesData";
-import { settingsNavSections } from "./settingsData";
+import { adminActivities, expiringPlans, jobSources as dashboardSources } from "./dashboardData.js";
+import { initialUsersList } from "./usersData.js";
+import { initialJobsList } from "./jobsData.js";
+import { initialPaymentsList } from "./paymentsData.js";
+import { initialTeamMembersList } from "./teamData.js";
+import { initialCandidatesList } from "./interviewsData.js";
+import { initialAiFeaturesList } from "./aiUsageData.js";
+import { initialAuditLogs } from "./auditLogData.js";
+import { initialPlansList, initialPlanSubscribers } from "./plansData.js";
+import { initialReportsList } from "./reportsData.js";
+import { initialJobSourcesList } from "./jobSourcesData.js";
+import { settingsNavSections } from "./settingsData.js";
 
 const collections = [
   { section: "Users", path: "/users", rows: initialUsersList, title: ["name"], detail: ["email", "phone", "plan"] },
